@@ -1,0 +1,21 @@
+chat: 'on'
+maintenance: 'off'
+modspace: "0 151 0"
+
+Ranker:
+  messagesend: "§f: "
+  administrateur:
+    prefix: "§c"
+    messages: "§c[Administration] "
+    cmd: "admin"
+  responsable:
+    prefix: "§6"
+    messages: "§6[Responsable] "
+    cmd: "resp"
+  moderateur:
+    prefix: "§b"
+    messages: "§b[Moderation] "
+    cmd: "mod"
+  joueur:
+    prefix: "§7"
+    messages: "§7[Joueur] "

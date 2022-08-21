@@ -1,0 +1,20 @@
+name: Moxed
+version: '${project.version}'
+main: fr.skytorstd.moxed.Main
+api-version: 1.19
+authors: [ Wabezeter ]
+description: An simple minecraft plugin
+website: https://skytorstd.ml/
+commands:
+  ranker:
+  maintenance:
+  staff:
+  tablist:
+  tab:
+  gm:
+  day:
+  night:
+  warp:
+  freeze:
+  dm:
+  mp:
