@@ -64,6 +64,7 @@ public final class Main extends JavaPlugin {
         getCommand("mp").setExecutor(new commandDM(this));
         getCommand("logs").setExecutor(new commandLog(this));
         getCommand("modspace").setExecutor(new commandModSpace(this));
+        getCommand("spawn").setExecutor(new commandSpawn(this));
     }
 
     @Override

@@ -1,6 +1,7 @@
 chat: 'on'
 maintenance: 'off'
 modspace: "0 151 0"
+spawnspace: "0 151 0"
 
 Ranker:
   messagesend: "§f: "
