@@ -1,16 +1,15 @@
 package fr.skytorstd.moxed;
 
 import fr.skytorstd.moxed.commands.*;
-import fr.skytorstd.moxed.manager.listeners.ChatListeners;
-import fr.skytorstd.moxed.manager.listeners.ClickListeners;
-import fr.skytorstd.moxed.manager.listeners.JoinQuitEventListeners;
-import fr.skytorstd.moxed.manager.listeners.ModiListeners;
+import fr.skytorstd.moxed.manager.listeners.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public final class Main extends JavaPlugin {
     public static ArrayList<Player> administrateur = new ArrayList<>();
@@ -37,11 +36,19 @@ public final class Main extends JavaPlugin {
         saveDefaultConfig();
         createFile("RankerPlayerRank");
         createFile("ModiWarp");
+        createLogs("Logs");
+        createLogs("JoinorQuit");
+        createLogs("Move");
+        createLogs("PlaceandBreak");
+        createLogs("Chat");
+        createLogs("Moderation");
+        createLogs("SpawnandRespawn");
 
         getServer().getPluginManager().registerEvents(new JoinQuitEventListeners(this), this);
         getServer().getPluginManager().registerEvents(new ChatListeners(this), this);
         getServer().getPluginManager().registerEvents(new ClickListeners(this), this);
         getServer().getPluginManager().registerEvents(new ModiListeners(this), this);
+        getServer().getPluginManager().registerEvents(new LogsListeners(this), this);
 
         getCommand("ranker").setExecutor(new commandRanker(this));
         getCommand("maintenance").setExecutor(new commandMaintenance(this));
@@ -55,6 +62,7 @@ public final class Main extends JavaPlugin {
         getCommand("freeze").setExecutor(new commandFreeze(this));
         getCommand("dm").setExecutor(new commandDM(this));
         getCommand("mp").setExecutor(new commandDM(this));
+        getCommand("logs").setExecutor(new commandLog(this));
     }
 
     @Override
@@ -84,4 +92,36 @@ public final class Main extends JavaPlugin {
     public File getFile(String fileName){
         return new File(getDataFolder(), fileName + ".yml");
     }
+    public void createLogs(String fileName){
+        File directory = new File(getDataFolder() + "/Logs");
+        if(!directory.exists()){
+            directory.mkdirs();
+        }
+        File logs = new File(getDataFolder() + "/Logs/" + fileName + ".txt");
+        if(!logs.exists()){
+            try {
+                logs.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public File getLogs(String fileName){
+        return new File(getDataFolder() + "/Logs", fileName + ".txt");
+    }
+    public void writeOnLogs(String fileName, String configName, String pseudoName, String logsString){
+        if(getConfig().getString("Logs.status").equalsIgnoreCase("on") && getConfig().getString("Logs." + configName).equalsIgnoreCase("on")){
+            FileWriter fw = null;
+            try {
+                fw = new FileWriter(getDataFolder() + "/Logs/" + fileName + ".txt",true);
+                Calendar cal = Calendar.getInstance();
+                fw.write(cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR) + " - " + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.MILLISECOND) + " | " + pseudoName + " | " + logsString + "\n");
+                fw.close();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+        }
+    }
+
 }

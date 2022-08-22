@@ -19,3 +19,12 @@ Ranker:
   joueur:
     prefix: "§7"
     messages: "§7[Joueur] "
+
+Logs:
+  status: "on"
+  joinandquit: "on"
+  move: "on"
+  placeandbreak: "on"
+  moderation: "on"
+  chat: "on"
+  spawnandrespawn: "on"

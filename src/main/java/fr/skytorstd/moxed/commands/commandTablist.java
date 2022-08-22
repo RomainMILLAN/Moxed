@@ -26,7 +26,7 @@ public class commandTablist implements CommandExecutor {
         }
         Player p = (Player) sender;
 
-        if(label.equalsIgnoreCase("tablist")){
+        if(label.equalsIgnoreCase("tablist") || label.equalsIgnoreCase("tab")){
             if(Main.administrateur.contains(p) || Main.responsables.contains(p) || Main.moderateur.contains(p) || p.isOp()){
                 if(args.length == 0){
                     int scale = 5*9;
