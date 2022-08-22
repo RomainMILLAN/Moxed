@@ -7,6 +7,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class commandStaff implements CommandExecutor {
     public Main main;
@@ -38,12 +40,16 @@ public class commandStaff implements CommandExecutor {
                             return false;
                         }else {
                             Main.Staff.add(p);
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 250, true, false));
                             p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Votre mode Staff est maintenant §9activé");
                             return true;
                         }
                     }else if(args[0].equalsIgnoreCase("off")){
                         if(Main.Staff.contains(p)){
                             Main.Staff.remove(p);
+                            if(p.hasPotionEffect(PotionEffectType.NIGHT_VISION)){
+                                p.removePotionEffect(PotionEffectType.NIGHT_VISION);
+                            }
                             p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Votre mode Staff est maintenant §9désactivé");
                             return true;
                         }else {
