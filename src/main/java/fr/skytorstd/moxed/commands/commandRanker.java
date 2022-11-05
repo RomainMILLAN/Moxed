@@ -34,7 +34,7 @@ public class commandRanker implements CommandExecutor {
                     if (args[0].equalsIgnoreCase("see")) {
                         Player targetPlayer = Bukkit.getServer().getPlayer(args[1]);
                         if (targetPlayer == null) {
-                            sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Veuilliez mettre un joueur en ligne");
+                            sender.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
                             return false;
                         }
                         FileConfiguration playersranks = YamlConfiguration.loadConfiguration(main.getFile("RankerPlayerRank"));
@@ -56,7 +56,7 @@ public class commandRanker implements CommandExecutor {
 
                             Player targetPlayer = Bukkit.getServer().getPlayer(args[1]);
                             if (targetPlayer == null) {
-                                sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Veuilliez mettre un joueur en ligne");
+                                sender.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
                                 return false;
                             }
 

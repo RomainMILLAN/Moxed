@@ -31,7 +31,14 @@ public final class Main extends JavaPlugin {
             MAINTENANCE = true;
         }
 
-        System.out.println("[MOXED] Lancement du contrôle du plugin");
+        System.out.println("\n" +
+                " __    __     ______     __  __     ______     _____    \n" +
+                "/\\ \"-./  \\   /\\  __ \\   /\\_\\_\\_\\   /\\  ___\\   /\\  __-.  \n" +
+                "\\ \\ \\-./\\ \\  \\ \\ \\/\\ \\  \\/_/\\_\\/_  \\ \\  __\\   \\ \\ \\/\\ \\ \n" +
+                " \\ \\_\\ \\ \\_\\  \\ \\_____\\   /\\_\\/\\_\\  \\ \\_____\\  \\ \\____- \n" +
+                "  \\/_/  \\/_/   \\/_____/   \\/_/\\/_/   \\/_____/   \\/____/ \n" +
+                "                                                        ");
+        System.out.println("[MOXED] Lancement du contrôle plugin");
 
         saveDefaultConfig();
         createFile("RankerPlayerRank");

@@ -29,7 +29,7 @@ public class commandFreeze implements CommandExecutor {
                 }else {
                     Player targetPlayer = Bukkit.getServer().getPlayer(args[0]);
                     if (targetPlayer == null) {
-                        sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Veuilliez mettre un joueur en ligne");
+                        sender.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
                         return false;
                     }
 

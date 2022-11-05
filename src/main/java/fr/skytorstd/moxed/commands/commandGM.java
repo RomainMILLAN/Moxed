@@ -54,7 +54,7 @@ public class commandGM implements CommandExecutor {
                 }else if(args.length == 2){
                     Player targetPlayer = Bukkit.getServer().getPlayer(args[0]);
                     if(targetPlayer == null){
-                        p.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Veuilliez mettre un joueur en ligne");
+                        p.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
                         return false;
                     }
                     Player target = targetPlayer;

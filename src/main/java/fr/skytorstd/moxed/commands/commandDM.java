@@ -32,21 +32,21 @@ public class commandDM implements CommandExecutor {
             }else {
                 Player targetPlayer = Bukkit.getServer().getPlayer(args[0]);
                 if(targetPlayer == null || targetPlayer==p){
-                    sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Veuilliez mettre un joueur en ligne sur le serveur !");
+                    sender.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
                     return false;
                 }
 
-                StringBuilder dm = new StringBuilder();
+                String dm = "";
                 for(int i=1; i<args.length; i++){
-                    dm.append(args[i] + " ");
+                    dm += args[i] + " ";
                 }
 
-                targetPlayer.sendMessage("§d◀-[" + p.getName() + "]: " + dm.toString());
-                p.sendMessage("§d-▶[" + p.getName() + "]: " + dm.toString());
+                targetPlayer.sendMessage("§d◀-[" + p.getName() + "]: " + dm);
+                p.sendMessage("§d-▶[" + p.getName() + "]: " + dm);
 
                 for(Player playersOnline : Bukkit.getOnlinePlayers()){
                     if(Main.Staff.contains(playersOnline)){
-                        playersOnline.sendMessage("§d[" + p.getName() + "] -▶ [" + targetPlayer.getName() + "]: " + dm.toString());
+                        playersOnline.sendMessage("§d[" + p.getName() + "] -▶ [" + targetPlayer.getName() + "]: " + dm);
                     }
                 }
             }

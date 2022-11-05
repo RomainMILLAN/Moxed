@@ -65,7 +65,7 @@ public class commandStaff implements CommandExecutor {
 
                         Player targetPlayer = Bukkit.getServer().getPlayer(args[1]);
                         if (targetPlayer == null) {
-                            sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Veuilliez mettre un joueur en ligne");
+                            sender.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
                             return false;
                         }
 
@@ -83,7 +83,7 @@ public class commandStaff implements CommandExecutor {
                     if(args[0].equalsIgnoreCase("set")){
                         Player targetPlayer = Bukkit.getServer().getPlayer(args[1]);
                         if (targetPlayer == null) {
-                            sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Veuilliez mettre un joueur en ligne");
+                            sender.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
                             return false;
                         }
 

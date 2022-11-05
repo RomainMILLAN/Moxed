@@ -6,7 +6,10 @@ public enum Messages {
     PREFIX_NOTAPLAYER("§4► §cIl faut être un joueur pour pouvoir effectuée cette commande."),
     PREFIX_ERRORCMD("§4► §cMauvaise commande, merci d'utiliser: §f"),
     PREFIX_ERRROR("§4► §c"),
-    PREFIX_ERRORPERM("§4► §cTu n'as pas la permission pour effectuer cette commande");
+    PREFIX_ERRORPERM("§4► §cTu n'as pas la permission pour effectuer cette commande"),
+
+    //ERROR MESSAGE
+    ERRORMESSAGE_PLAYER_NOT_CONNECTED(PREFIX_ERRROR.getMessage() + "Veuilliez mettre un joueur en ligne sur le serveur !");
 
     private final String message;
 
