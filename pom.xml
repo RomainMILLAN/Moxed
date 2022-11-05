@@ -6,12 +6,12 @@
 
     <groupId>fr.skytorstd</groupId>
     <artifactId>Moxed</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Moxed</name>
 
-    <description>An simple minecraft plugin</description>
+    <description>An usefull plugin for all server of SkytorStudio</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
