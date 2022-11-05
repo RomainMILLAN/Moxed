@@ -15,14 +15,16 @@ public final class Main extends JavaPlugin {
     public static ArrayList<Player> administrateur = new ArrayList<>();
     public static ArrayList<Player> responsables = new ArrayList<>();
     public static ArrayList<Player> moderateur = new ArrayList<>();
-
-    //MODI
     public static ArrayList<Player> Staff = new ArrayList<Player>();
     public static ArrayList<Player> Mute = new ArrayList<Player> ();
     public static ArrayList<Player> Freeze = new ArrayList<Player> ();
     public static boolean MAINTENANCE = false;
 
 
+
+    /*
+     * ENABLE/DISABLE
+     */
     @Override
     public void onEnable() {
         if(getConfig().getString("maintenance").equalsIgnoreCase("off")){
@@ -73,7 +75,6 @@ public final class Main extends JavaPlugin {
         getCommand("modspace").setExecutor(new commandModSpace(this));
         getCommand("spawn").setExecutor(new commandSpawn(this));
     }
-
     @Override
     public void onDisable() {
         System.out.println("[MOXED] Extinction du plugin");
@@ -82,6 +83,10 @@ public final class Main extends JavaPlugin {
 
 
 
+
+    /*
+     * FILES
+     */
     public void createFile(String fileName){
 
         if(!getDataFolder().exists()){
