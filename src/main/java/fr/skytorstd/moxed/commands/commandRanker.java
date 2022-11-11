@@ -53,36 +53,30 @@ public class commandRanker implements CommandExecutor {
                     }
                 }else if(args.length == 3){
                     if(args[0].equalsIgnoreCase("set")) {
-                        if (main.getConfig().contains("Ranker." + args[2])) {
+                        Player targetPlayer = Bukkit.getServer().getPlayer(args[1]);
+                        if (targetPlayer == null) {
+                            sender.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
+                            return false;
+                        }
 
-                            Player targetPlayer = Bukkit.getServer().getPlayer(args[1]);
-                            if (targetPlayer == null) {
-                                sender.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
-                                return false;
-                            }
+                        if (args[2].equalsIgnoreCase("admin") || args[2].equalsIgnoreCase("administrateur")) {
+                            sender.sendMessage(this.setGroupeForPlayer("administrateur", targetPlayer));
+                            return true;
 
-                            if (args[2].equalsIgnoreCase("admin") || args[2].equalsIgnoreCase("administrateur")) {
-                                sender.sendMessage(this.setGroupeForPlayer("administrateur", targetPlayer));
-                                return true;
+                        } else if (args[2].equalsIgnoreCase("resp") || args[2].equalsIgnoreCase("responsable")) {
+                            sender.sendMessage(this.setGroupeForPlayer("responsable", targetPlayer));
+                            return true;
 
-                            } else if (args[2].equalsIgnoreCase("resp") || args[2].equalsIgnoreCase("responsable")) {
-                                sender.sendMessage(this.setGroupeForPlayer("responsable", targetPlayer));
-                                return true;
+                        } else if (args[2].equalsIgnoreCase("modo") || args[2].equalsIgnoreCase("moderateur") || args[2].equalsIgnoreCase("mod")) {
+                            sender.sendMessage(this.setGroupeForPlayer("moderateur", targetPlayer));
+                            return true;
 
-                            } else if (args[2].equalsIgnoreCase("modo") || args[2].equalsIgnoreCase("moderateur") || args[2].equalsIgnoreCase("mod")) {
-                                sender.sendMessage(this.setGroupeForPlayer("moderateur", targetPlayer));
-                                return true;
+                        } else if (args[2].equalsIgnoreCase("joueure")) {
+                            sender.sendMessage(this.setGroupeForPlayer("joueur", targetPlayer));
+                            return true;
 
-                            } else if (args[2].equalsIgnoreCase("joueure")) {
-                                sender.sendMessage(this.setGroupeForPlayer("joueur", targetPlayer));
-                                return true;
-
-                            } else {
-                                sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Le groupe que vous avez specifié n'existe pas !");
-                                return false;
-                            }
                         } else {
-                            sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Le groupe que vous avez specifié n'existe pas dans la configuration !");
+                            sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Le groupe que vous avez specifié n'existe pas !");
                             return false;
                         }
                     }else {
