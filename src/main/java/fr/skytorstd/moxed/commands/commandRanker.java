@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class commandRanker implements CommandExecutor {
     public Main main;
@@ -60,108 +61,27 @@ public class commandRanker implements CommandExecutor {
                                 return false;
                             }
 
-                            if (args[2].equalsIgnoreCase("administrateur")) {
-                                Main.administrateur.add(targetPlayer);
+                            ArrayList<String> administrateurStringList = new ArrayList<>();
+                            ArrayList<String> responsableStringList = new ArrayList<>();
+                            ArrayList<String> moderateurStringList = new ArrayList<>();
+                            ArrayList<String> joueurStringList = new ArrayList<>();
 
-                                if(Main.responsables.contains(targetPlayer)){
-                                    Main.responsables.remove(targetPlayer);
-                                }
-                                if(Main.moderateur.contains(targetPlayer)){
-                                    Main.moderateur.remove(targetPlayer);
-                                }
+                            if (administrateurStringList.contains(args[2])) {
+                                sender.sendMessage(this.setGroupeForPlayer("administrateur", targetPlayer));
+                                return true;
 
-                                FileConfiguration playersranks = YamlConfiguration.loadConfiguration(main.getFile("RankerPlayerRank"));
-                                playersranks.set("Players." + targetPlayer.getName(), "administrateur");
-                                try {
-                                    playersranks.save(main.getFile("RankerPlayerRank"));
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                            } else if (responsableStringList.contains(args[2])) {
+                                sender.sendMessage(this.setGroupeForPlayer("responsable", targetPlayer));
+                                return true;
 
-                                if (Main.administrateur.contains(targetPlayer)) {
-                                    sender.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Le joueur §6" + targetPlayer.getDisplayName() + " §fa été ajouté à la liste des " + main.getConfig().getString("Ranker.administrateur.prefix") + "Administrateur");
-                                    return true;
-                                } else {
-                                    sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Une erreur c'est produite, veuilliez reessayer !");
-                                    return false;
-                                }
-                            } else if (args[2].equalsIgnoreCase("responsable")) {
-                                Main.responsables.add(targetPlayer);
+                            } else if (moderateurStringList.contains(args[2])) {
+                                sender.sendMessage(this.setGroupeForPlayer("moderateur", targetPlayer));
+                                return true;
 
-                                if(Main.administrateur.contains(targetPlayer)){
-                                    Main.administrateur.remove(targetPlayer);
-                                }
-                                if(Main.moderateur.contains(targetPlayer)){
-                                    Main.moderateur.remove(targetPlayer);
-                                }
+                            } else if (joueurStringList.contains(args[2])) {
+                                sender.sendMessage(this.setGroupeForPlayer("joueur", targetPlayer));
+                                return true;
 
-                                FileConfiguration playersranks = YamlConfiguration.loadConfiguration(main.getFile("RankerPlayerRank"));
-                                playersranks.set("Players." + targetPlayer.getName(), "responsable");
-                                try {
-                                    playersranks.save(main.getFile("RankerPlayerRank"));
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-
-                                if (Main.responsables.contains(targetPlayer)) {
-                                    sender.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Le joueur §6" + targetPlayer.getDisplayName() + " §fa été ajouté à la liste des " + main.getConfig().getString("Ranker.responsable.prefix") + "Responsable");
-                                    return true;
-                                } else {
-                                    sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Une erreur c'est produite, veuilliez reessayer !");
-                                    return false;
-                                }
-                            } else if (args[2].equalsIgnoreCase("moderateur")) {
-                                Main.moderateur.add(targetPlayer);
-
-                                if(Main.administrateur.contains(targetPlayer)){
-                                    Main.administrateur.remove(targetPlayer);
-                                }
-                                if(Main.responsables.contains(targetPlayer)){
-                                    Main.responsables.remove(targetPlayer);
-                                }
-
-                                FileConfiguration playersranks = YamlConfiguration.loadConfiguration(main.getFile("RankerPlayerRank"));
-                                playersranks.set("Players." + targetPlayer.getName(), "moderateur");
-                                try {
-                                    playersranks.save(main.getFile("RankerPlayerRank"));
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-
-                                if (Main.moderateur.contains(targetPlayer)) {
-                                    sender.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Le joueur §6" + targetPlayer.getDisplayName() + " §fa été ajouté à la liste des " + main.getConfig().getString("Ranker.moderateur.prefix") + "Moderateur");
-                                    return true;
-                                } else {
-                                    sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Une erreur c'est produite, veuilliez reessayer !");
-                                    return false;
-                                }
-                            } else if (args[2].equalsIgnoreCase("joueur")) {
-
-                                if(Main.administrateur.contains(targetPlayer)){
-                                    Main.administrateur.remove(targetPlayer);
-                                }
-                                if(Main.moderateur.contains(targetPlayer)){
-                                    Main.moderateur.remove(targetPlayer);
-                                }
-                                if(Main.moderateur.contains(targetPlayer)){
-                                    Main.moderateur.remove(targetPlayer);
-                                }
-
-                                FileConfiguration playersranks = YamlConfiguration.loadConfiguration(main.getFile("RankerPlayerRank"));
-                                playersranks.set("Players." + targetPlayer.getName(), "NULL");
-                                try {
-                                    playersranks.save(main.getFile("RankerPlayerRank"));
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-
-                                if (!Main.administrateur.contains(targetPlayer) && !Main.responsables.contains(targetPlayer) && !Main.moderateur.contains(targetPlayer)) {
-                                    sender.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Le joueur §6" + targetPlayer.getDisplayName() + " §fa été ajouté à la liste des " + main.getConfig().getString("Ranker.joueur.prefix") + "Joueur");
-                                    return true;
-                                } else {
-                                    sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Une erreur c'est produite, veuilliez reessayer !");
-                                    return false;
-                                }
                             } else {
                                 sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Le groupe que vous avez specifié n'existe pas !");
                                 return false;
@@ -185,5 +105,75 @@ public class commandRanker implements CommandExecutor {
         }
 
         return false;
+    }
+
+    private String setGroupeForPlayer(String groupe, Player p){
+        FileConfiguration playersranks = YamlConfiguration.loadConfiguration(main.getFile("RankerPlayerRank"));
+        if(groupe.equalsIgnoreCase("administrateur")){
+            if(!(Main.administrateur.contains(p))){
+                Main.administrateur.add(p);
+            }
+
+            if(Main.responsables.contains(p)){
+                Main.responsables.remove(p);
+            }
+            if(Main.moderateur.contains(p)){
+                Main.moderateur.remove(p);
+            }
+            playersranks.set("Players." + p.getName(), "administrateur");
+        }else if(groupe.equalsIgnoreCase("responsable")){
+            if(!Main.responsables.contains(p)){
+                Main.responsables.add(p);
+            }
+
+            if(Main.administrateur.contains(p)){
+                Main.administrateur.remove(p);
+            }
+            if(Main.moderateur.contains(p)){
+                Main.moderateur.remove(p);
+            }
+            playersranks.set("Players." + p.getName(), "responsable");
+        }else if(groupe.equalsIgnoreCase("moderateur")){
+            if(!(Main.moderateur.contains(p))){
+                Main.moderateur.add(p);
+            }
+
+            if(Main.administrateur.contains(p)){
+                Main.administrateur.remove(p);
+            }
+            if(Main.responsables.contains(p)){
+                Main.responsables.remove(p);
+            }
+            playersranks.set("Players." + p.getName(), "moderateur");
+        }else if(groupe.equalsIgnoreCase("joueur")) {
+            if(Main.administrateur.contains(p)){
+                Main.administrateur.remove(p);
+            }
+            if(Main.moderateur.contains(p)){
+                Main.moderateur.remove(p);
+            }
+            if(Main.moderateur.contains(p)){
+                Main.moderateur.remove(p);
+            }
+            playersranks.set("Players." + p.getName(), "NULL");
+        }
+
+        try {
+            playersranks.save(main.getFile("RankerPlayerRank"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (Main.administrateur.contains(p)) {
+            return Messages.PREFIX_NORMAL.getMessage() + "Le joueur §6" + p.getDisplayName() + " §fa été ajouté à la liste des " + main.getConfig().getString("Ranker.administrateur.prefix") + "Administrateur";
+        }else if (Main.responsables.contains(p)) {
+            return Messages.PREFIX_NORMAL.getMessage() + "Le joueur §6" + p.getDisplayName() + " §fa été ajouté à la liste des " + main.getConfig().getString("Ranker.responsable.prefix") + "Responsable";
+        }else if (Main.moderateur.contains(p)) {
+            return Messages.PREFIX_NORMAL.getMessage() + "Le joueur §6" + p.getDisplayName() + " §fa été ajouté à la liste des " + main.getConfig().getString("Ranker.moderateur.prefix") + "Moderateur";
+        }else if (!Main.administrateur.contains(p) && !Main.responsables.contains(p) && !Main.moderateur.contains(p)) {
+            return Messages.PREFIX_NORMAL.getMessage() + "Le joueur §6" + p.getDisplayName() + " §fa été ajouté à la liste des " + main.getConfig().getString("Ranker.joueur.prefix") + "Joueur";
+        } else {
+            return Messages.PREFIX_ERRROR.getMessage() + "Une erreur c'est produite, veuilliez reessayer !";
+        }
     }
 }
