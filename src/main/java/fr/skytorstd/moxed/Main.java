@@ -62,7 +62,7 @@ public final class Main extends JavaPlugin {
         getCommand("ranker").setExecutor(new commandRanker(this));
         getCommand("maintenance").setExecutor(new commandMaintenance(this));
         getCommand("staff").setExecutor(new commandStaff(this));
-        getCommand("tablist").setExecutor(new commandTablist(this));
+        getCommand("moderation").setExecutor(new commandModeration(this));
         getCommand("tab").setExecutor(new commandTablist(this));
         getCommand("gm").setExecutor(new commandGM(this));
         getCommand("day").setExecutor(new commandTime(this));
