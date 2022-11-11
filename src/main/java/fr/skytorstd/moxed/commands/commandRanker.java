@@ -61,31 +61,19 @@ public class commandRanker implements CommandExecutor {
                                 return false;
                             }
 
-                            ArrayList<String> administrateurStringList = new ArrayList<>();
-                            administrateurStringList.add("admin");
-                            administrateurStringList.add("administrateur");
-                            ArrayList<String> responsableStringList = new ArrayList<>();
-                            responsableStringList.add("resp");
-                            responsableStringList.add("responsable");
-                            ArrayList<String> moderateurStringList = new ArrayList<>();
-                            moderateurStringList.add("modo");
-                            moderateurStringList.add("moderateur");
-                            ArrayList<String> joueurStringList = new ArrayList<>();
-                            joueurStringList.add("joueur");
-
-                            if (administrateurStringList.contains(args[2])) {
+                            if (args[2].equalsIgnoreCase("admin") || args[2].equalsIgnoreCase("administrateur")) {
                                 sender.sendMessage(this.setGroupeForPlayer("administrateur", targetPlayer));
                                 return true;
 
-                            } else if (responsableStringList.contains(args[2])) {
+                            } else if (args[2].equalsIgnoreCase("resp") || args[2].equalsIgnoreCase("responsable")) {
                                 sender.sendMessage(this.setGroupeForPlayer("responsable", targetPlayer));
                                 return true;
 
-                            } else if (moderateurStringList.contains(args[2])) {
+                            } else if (args[2].equalsIgnoreCase("modo") || args[2].equalsIgnoreCase("moderateur") || args[2].equalsIgnoreCase("mod")) {
                                 sender.sendMessage(this.setGroupeForPlayer("moderateur", targetPlayer));
                                 return true;
 
-                            } else if (joueurStringList.contains(args[2])) {
+                            } else if (args[2].equalsIgnoreCase("joueure")) {
                                 sender.sendMessage(this.setGroupeForPlayer("joueur", targetPlayer));
                                 return true;
 
