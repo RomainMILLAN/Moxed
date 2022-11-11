@@ -9,8 +9,7 @@ commands:
   ranker:
   maintenance:
   staff:
-  tablist:
-  tab:
+  moderation:
   gm:
   day:
   night:
