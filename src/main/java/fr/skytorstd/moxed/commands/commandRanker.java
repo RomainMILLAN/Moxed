@@ -62,9 +62,16 @@ public class commandRanker implements CommandExecutor {
                             }
 
                             ArrayList<String> administrateurStringList = new ArrayList<>();
+                            administrateurStringList.add("admin");
+                            administrateurStringList.add("administrateur");
                             ArrayList<String> responsableStringList = new ArrayList<>();
+                            responsableStringList.add("resp");
+                            responsableStringList.add("responsable");
                             ArrayList<String> moderateurStringList = new ArrayList<>();
+                            moderateurStringList.add("modo");
+                            moderateurStringList.add("moderateur");
                             ArrayList<String> joueurStringList = new ArrayList<>();
+                            joueurStringList.add("joueur");
 
                             if (administrateurStringList.contains(args[2])) {
                                 sender.sendMessage(this.setGroupeForPlayer("administrateur", targetPlayer));
