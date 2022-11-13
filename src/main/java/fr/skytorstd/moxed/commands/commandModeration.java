@@ -21,12 +21,12 @@ public class commandModeration implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!(sender instanceof Player)){
-            sender.sendMessage(Messages.PREFIX_NOTAPLAYER.getMessage());
-        }
-        Player p = (Player) sender;
-
         if(label.equalsIgnoreCase("moderation")){
+            if(!(sender instanceof Player)){
+                sender.sendMessage(Messages.PREFIX_NOTAPLAYER.getMessage());
+            }
+            Player p = (Player) sender;
+
             if(Main.Staff.contains(p)){
                 Player targetPlayer = Bukkit.getServer().getPlayer(args[0]);
                 if(targetPlayer == null){

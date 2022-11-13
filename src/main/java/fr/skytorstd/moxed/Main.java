@@ -44,7 +44,7 @@ public final class Main extends JavaPlugin {
 
         saveDefaultConfig();
         createFile("RankerPlayerRank");
-        createFile("ModiWarp");
+        //LOGS
         createLogs("Logs");
         createLogs("JoinorQuit");
         createLogs("Move");
@@ -66,13 +66,12 @@ public final class Main extends JavaPlugin {
         getCommand("gm").setExecutor(new commandGM(this));
         getCommand("day").setExecutor(new commandTime(this));
         getCommand("night").setExecutor(new commandTime(this));
-        getCommand("warp").setExecutor(new commandWarp(this));
         getCommand("freeze").setExecutor(new commandFreeze(this));
+        getCommand("spawn").setExecutor(new commandSpawn(this));
         getCommand("dm").setExecutor(new commandDM(this));
         getCommand("mp").setExecutor(new commandDM(this));
         getCommand("logs").setExecutor(new commandLog(this));
         getCommand("modspace").setExecutor(new commandModSpace(this));
-        getCommand("spawn").setExecutor(new commandSpawn(this));
     }
     @Override
     public void onDisable() {

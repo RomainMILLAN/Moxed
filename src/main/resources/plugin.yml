@@ -2,7 +2,7 @@ name: Moxed
 version: '${project.version}'
 main: fr.skytorstd.moxed.Main
 api-version: 1.19
-authors: [ Wabezeter, Skytor-Studio ]
+authors: [ Wabezeter ]
 description: An usefull plugin for all server of SkytorStudio
 website: https://skytorstd.ml/
 commands:
@@ -13,7 +13,6 @@ commands:
   gm:
   day:
   night:
-  warp:
   freeze:
   dm:
   mp:

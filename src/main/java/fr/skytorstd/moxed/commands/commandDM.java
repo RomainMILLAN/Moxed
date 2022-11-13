@@ -31,7 +31,7 @@ public class commandDM implements CommandExecutor {
                 return false;
             }else {
                 Player targetPlayer = Bukkit.getServer().getPlayer(args[0]);
-                if(targetPlayer == null || targetPlayer==p){
+                if(targetPlayer == null){
                     sender.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
                     return false;
                 }
