@@ -44,6 +44,7 @@ public final class Main extends JavaPlugin {
 
         saveDefaultConfig();
         createFile("RankerPlayerRank");
+        createFile("Warns");
         //LOGS
         createLogs("Logs");
         createLogs("JoinorQuit");
@@ -72,6 +73,7 @@ public final class Main extends JavaPlugin {
         getCommand("mp").setExecutor(new commandDM(this));
         getCommand("logs").setExecutor(new commandLog(this));
         getCommand("modspace").setExecutor(new commandModSpace(this));
+        getCommand("warn").setExecutor(new commandWarn(this));
     }
     @Override
     public void onDisable() {
