@@ -53,6 +53,9 @@ public class commandModeration implements CommandExecutor {
 
                 p.openInventory(tablistInventoryModeration);
                 return true;
+            }else {
+                p.sendMessage(Messages.PREFIX_ERRORPERM.getMessage());
+                return false;
             }
         }
         return false;
