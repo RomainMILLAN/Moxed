@@ -2,6 +2,7 @@ package fr.skytorstd.moxed.commands;
 
 import fr.skytorstd.moxed.Main;
 import fr.skytorstd.moxed.manager.Messages;
+import fr.skytorstd.moxed.manager.PlayersServerManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,7 +30,11 @@ public class commandMaintenance implements CommandExecutor {
                             main.getConfig().set("maintenance", "on");
 
                             main.saveConfig();
-                            sender.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "La maintenance vient d'être §9Activée");
+                            sender.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "La maintenance vient d'être §9activée");
+
+                            //KICK ALL PLAYERS
+                            PlayersServerManager.kickAllPlayers();
+
                         }else {
                             sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "La maintenance est déjà §9activée");
                             return false;
@@ -40,7 +45,7 @@ public class commandMaintenance implements CommandExecutor {
                             main.getConfig().set("maintenance", "off");
 
                             main.saveConfig();
-                            sender.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "La maintenance vient d'être §9Désactivée");
+                            sender.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "La maintenance vient d'être §9désactivée");
                         }else {
                             sender.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "La maintenance est déjà §9désactivée");
                             return false;

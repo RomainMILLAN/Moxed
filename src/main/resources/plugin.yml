@@ -14,8 +14,9 @@ commands:
   day:
   night:
   freeze:
+  spawn:
   dm:
   mp:
   logs:
   modspace:
-  spawn:
+  warn:

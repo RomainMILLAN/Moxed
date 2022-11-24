@@ -9,7 +9,10 @@ public enum Messages {
     PREFIX_ERRORPERM("§4► §cTu n'as pas la permission pour effectuer cette commande"),
 
     //ERROR MESSAGE
-    ERRORMESSAGE_PLAYER_NOT_CONNECTED(PREFIX_ERRROR.getMessage() + "Veuilliez mettre un joueur en ligne sur le serveur !");
+    ERRORMESSAGE_PLAYER_NOT_CONNECTED(PREFIX_ERRROR.getMessage() + "Veuilliez mettre un joueur en ligne sur le serveur !"),
+
+    //MAINTENANCE
+    MESSAGE_ENTREE_EN_MAINTENANCE(PREFIX_ERRROR.getMessage() + "Le serveur rentre en MAINTENANCE");
 
     private final String message;
 
