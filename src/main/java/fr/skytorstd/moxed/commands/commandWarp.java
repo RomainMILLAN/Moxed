@@ -30,7 +30,12 @@ public class commandWarp implements CommandExecutor {
             }
 
             Player p = (Player) sender;
-            String commandAtUse = "/warp <set/list/[Nom_du_warp]> [Nom_du_warp]";
+            String commandAtUse;
+            if(Main.administrateur.contains(p) || Main.responsables.contains(p) || p.isOp()){
+                commandAtUse = "/warp <set/list/[Nom_du_warp]> [Nom_du_warp]";
+            }else {
+                commandAtUse= "/warp <list/[Nom_du_warp]>";
+            }
 
             if(args.length == 0 || args.length > 2){
                 p.sendMessage(Messages.PREFIX_ERRORCMD.getMessage() + commandAtUse);

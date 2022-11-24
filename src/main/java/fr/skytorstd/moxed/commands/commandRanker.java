@@ -27,7 +27,7 @@ public class commandRanker implements CommandExecutor {
 
         if (label.equalsIgnoreCase("ranker")) {
             if (sender.hasPermission(new MoxedPermissions().ranker) || sender.isOp()) {
-                String commandAtUse = "/ranker <set/see> [player] [groupe]";
+                String commandAtUse = "/ranker <set/see> [player] [admin/responsable/moderateur/joueur]";
                 if (args.length <= 1) {
                     sender.sendMessage(Messages.PREFIX_ERRORCMD.getMessage() + commandAtUse);
                     return false;
@@ -71,7 +71,7 @@ public class commandRanker implements CommandExecutor {
                             sender.sendMessage(this.setGroupeForPlayer("moderateur", targetPlayer));
                             return true;
 
-                        } else if (args[2].equalsIgnoreCase("joueure")) {
+                        } else if (args[2].equalsIgnoreCase("joueur")) {
                             sender.sendMessage(this.setGroupeForPlayer("joueur", targetPlayer));
                             return true;
 
