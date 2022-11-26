@@ -8,7 +8,6 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -80,18 +79,18 @@ public class commandModeration implements CommandExecutor {
                     int scale = 6*9;
                     Inventory tablistInventoryModeration = Bukkit.createInventory(null, scale, targetPlayer.getName());
 
-                    tablistInventoryModeration.setItem(0, (ItemStack) ItemManager.craftModerationGUIItem(Material.PAPER, "§fDirect Message"));
-                    tablistInventoryModeration.setItem(10, (ItemStack) ItemManager.craftModerationGUIItem(Material.NETHERITE_AXE, "§cBan"));
-                    tablistInventoryModeration.setItem(13, (ItemStack) ItemManager.craftModerationGUIItem(Material.PAPER, "§9Mute"));
-                    tablistInventoryModeration.setItem(16, (ItemStack) ItemManager.craftModerationGUIItem(Material.ANVIL, "§6Kick"));
-                    tablistInventoryModeration.setItem(20, (ItemStack) ItemManager.craftModerationGUIItem(Material.COBBLESTONE, "§8GM 0"));
-                    tablistInventoryModeration.setItem(21, (ItemStack) ItemManager.craftModerationGUIItem(Material.GRASS_BLOCK, "§2GM 1"));
-                    tablistInventoryModeration.setItem(23, (ItemStack) ItemManager.craftModerationGUIItem(Material.SPRUCE_LOG, "§cGM 2"));
-                    tablistInventoryModeration.setItem(24, (ItemStack) ItemManager.craftModerationGUIItem(Material.BARRIER, "§fGM 3"));
-                    tablistInventoryModeration.setItem(30, (ItemStack) ItemManager.craftModerationGUIItem(Material.ENDER_PEARL, "§fGoto"));
-                    tablistInventoryModeration.setItem(32, (ItemStack) ItemManager.craftModerationGUIItem(Material.ENDER_EYE, "§fBring"));
-                    tablistInventoryModeration.setItem(49, (ItemStack) ItemManager.craftModerationGUIItem(Material.GLASS, "§fVanish"));
-                    tablistInventoryModeration.setItem(53, (ItemStack) ItemManager.craftModerationGUIItem(Material.BEDROCK, "§9Salle de Modération"));
+                    tablistInventoryModeration.setItem(0, (ItemStack) ItemManager.craftItem(Material.PAPER, "§fDirect Message"));
+                    tablistInventoryModeration.setItem(10, (ItemStack) ItemManager.craftItem(Material.NETHERITE_AXE, "§cBan"));
+                    tablistInventoryModeration.setItem(13, (ItemStack) ItemManager.craftItem(Material.PAPER, "§9Mute"));
+                    tablistInventoryModeration.setItem(16, (ItemStack) ItemManager.craftItem(Material.ANVIL, "§6Kick"));
+                    tablistInventoryModeration.setItem(20, (ItemStack) ItemManager.craftItem(Material.COBBLESTONE, "§8GM 0"));
+                    tablistInventoryModeration.setItem(21, (ItemStack) ItemManager.craftItem(Material.GRASS_BLOCK, "§2GM 1"));
+                    tablistInventoryModeration.setItem(23, (ItemStack) ItemManager.craftItem(Material.SPRUCE_LOG, "§cGM 2"));
+                    tablistInventoryModeration.setItem(24, (ItemStack) ItemManager.craftItem(Material.BARRIER, "§fGM 3"));
+                    tablistInventoryModeration.setItem(30, (ItemStack) ItemManager.craftItem(Material.ENDER_PEARL, "§fGoto"));
+                    tablistInventoryModeration.setItem(32, (ItemStack) ItemManager.craftItem(Material.ENDER_EYE, "§fBring"));
+                    tablistInventoryModeration.setItem(49, (ItemStack) ItemManager.craftItem(Material.GLASS, "§fVanish"));
+                    tablistInventoryModeration.setItem(53, (ItemStack) ItemManager.craftItem(Material.BEDROCK, "§9Salle de Modération"));
 
                     p.openInventory(tablistInventoryModeration);
                     return true;
