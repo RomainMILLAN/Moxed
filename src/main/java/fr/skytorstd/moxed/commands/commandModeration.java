@@ -77,12 +77,13 @@ public class commandModeration implements CommandExecutor {
 
                     //INV MODERATION
                     int scale = 6*9;
-                    Inventory tablistInventoryModeration = Bukkit.createInventory(null, scale, targetPlayer.getName());
+                    Inventory tablistInventoryModeration = Bukkit.createInventory(null, scale, targetPlayer.getName() + " > Moderation");
 
                     tablistInventoryModeration.setItem(0, (ItemStack) ItemManager.craftItem(Material.PAPER, "§fDirect Message"));
                     tablistInventoryModeration.setItem(10, (ItemStack) ItemManager.craftItem(Material.NETHERITE_AXE, "§cBan"));
-                    tablistInventoryModeration.setItem(13, (ItemStack) ItemManager.craftItem(Material.PAPER, "§9Mute"));
-                    tablistInventoryModeration.setItem(16, (ItemStack) ItemManager.craftItem(Material.ANVIL, "§6Kick"));
+                    tablistInventoryModeration.setItem(12, (ItemStack) ItemManager.craftItem(Material.PAPER, "§9Mute"));
+                    tablistInventoryModeration.setItem(14, (ItemStack) ItemManager.craftItem(Material.ANVIL, "§9Warns"));
+                    tablistInventoryModeration.setItem(16, (ItemStack) ItemManager.craftItem(Material.IRON_SWORD, "§6Kick"));
                     tablistInventoryModeration.setItem(20, (ItemStack) ItemManager.craftItem(Material.COBBLESTONE, "§8GM 0"));
                     tablistInventoryModeration.setItem(21, (ItemStack) ItemManager.craftItem(Material.GRASS_BLOCK, "§2GM 1"));
                     tablistInventoryModeration.setItem(23, (ItemStack) ItemManager.craftItem(Material.SPRUCE_LOG, "§cGM 2"));
