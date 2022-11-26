@@ -3,12 +3,15 @@ package fr.skytorstd.moxed.commands;
 import fr.skytorstd.moxed.Main;
 import fr.skytorstd.moxed.manager.Messages;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.Collection;
 
 public class commandStaff implements CommandExecutor {
     public Main main;
@@ -29,7 +32,7 @@ public class commandStaff implements CommandExecutor {
 
             Player p = (Player) sender;
 
-            if(Main.administrateur.contains(p) || Main.responsables.contains(p) || Main.moderateur.contains(p)){
+            if(Main.administrateur.contains(p) || Main.responsables.contains(p) || Main.moderateur.contains(p) || p.isOp()){
                 if(args.length == 0 || args.length > 3){
                     p.sendMessage(Messages.PREFIX_ERRORCMD.getMessage() + commandAtUse);
                     return false;
@@ -41,6 +44,7 @@ public class commandStaff implements CommandExecutor {
                         }else {
                             Main.Staff.add(p);
                             p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 250, true, false));
+                            p.setGameMode(GameMode.SPECTATOR);
                             p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Votre mode Staff est maintenant §9activé");
                             return true;
                         }
@@ -50,6 +54,7 @@ public class commandStaff implements CommandExecutor {
                             if(p.hasPotionEffect(PotionEffectType.NIGHT_VISION)){
                                 p.removePotionEffect(PotionEffectType.NIGHT_VISION);
                             }
+                            p.setGameMode(GameMode.SURVIVAL);
                             p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Votre mode Staff est maintenant §9désactivé");
                             return true;
                         }else {
@@ -92,13 +97,20 @@ public class commandStaff implements CommandExecutor {
                                 p.sendMessage(Messages.PREFIX_ERRROR.getMessage() + "Le mode Staff du joueur §6" + targetPlayer.getName() + " §fest déjà §9activé");
                                 return false;
                             }else {
-                                Main.Staff.add(p);
+                                Main.Staff.add(targetPlayer);
+                                targetPlayer.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 250, true, false));
+                                targetPlayer.setGameMode(GameMode.SPECTATOR);
                                 p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Le mode Staff du joueur §6" + targetPlayer.getName() + " §fest maintenant §9activé");
                                 return true;
                             }
                         }else if(args[2].equalsIgnoreCase("off")){
                             if(Main.Staff.contains(targetPlayer)){
-                                Main.Staff.remove(p);
+                                Main.Staff.remove(targetPlayer);
+                                targetPlayer.setGameMode(GameMode.SURVIVAL);
+                                Collection<PotionEffect> potionsEffects = targetPlayer.getActivePotionEffects();
+                                for(PotionEffect potionEffect : potionsEffects){
+                                    targetPlayer.removePotionEffect(potionEffect.getType());
+                                }
                                 p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Le mode Staff du joueur §6" + targetPlayer.getName() + " §fest maintenant §9désactivé");
                                 return true;
                             }else {
