@@ -2,6 +2,7 @@ package fr.skytorstd.moxed.manager.listeners;
 
 import fr.skytorstd.moxed.Main;
 import fr.skytorstd.moxed.manager.Messages;
+import org.bukkit.GameMode;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -9,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.potion.PotionEffectType;
 
 public class JoinQuitEventListeners implements Listener {
     public Main main;
@@ -65,6 +67,14 @@ public class JoinQuitEventListeners implements Listener {
         }
         if(Main.moderateur.contains(p)){
             Main.moderateur.remove(p);
+        }
+
+        if(Main.Staff.contains(p)){
+            Main.Staff.remove(p);
+            if(p.hasPotionEffect(PotionEffectType.NIGHT_VISION)){
+                p.removePotionEffect(PotionEffectType.NIGHT_VISION);
+            }
+            p.setGameMode(GameMode.SURVIVAL);
         }
 
         e.setQuitMessage(Messages.PREFIX_NORMAL.getMessage() + " §6" + p.getName() + " §7vient de se déconnecter !");

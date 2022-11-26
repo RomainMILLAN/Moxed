@@ -37,7 +37,7 @@ public class commandGM implements CommandExecutor {
                         return true;
                     }else if(args[0].equalsIgnoreCase("1") || args[0].equalsIgnoreCase("c")){
                         p.setGameMode(GameMode.CREATIVE);
-                        p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + " Votre mode de jeu a été défini sur §9CREATIVE");
+                        p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Votre mode de jeu a été défini sur §9CREATIVE");
                         return true;
                     }else if(args[0].equalsIgnoreCase("2") || args[0].equalsIgnoreCase("a")){
                         p.setGameMode(GameMode.ADVENTURE);

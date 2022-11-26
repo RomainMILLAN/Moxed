@@ -249,7 +249,87 @@ public class ClickListeners implements Listener {
             }
         }
 
+        if(e.getView().getTitle().contains("Liste des Tickets")){
+            if(Main.Staff.contains(p)){
+                e.setCancelled(true);
 
+                if(current.getType() == Material.PAPER){
+                    String ticketName = current.getItemMeta().getDisplayName();
+                    String[] targetNameArgs = ticketName.split("->");
+                    String targetName = targetNameArgs[0];
+                    targetName = targetName.substring(0, targetName.length()-1);
+                    ticketName = targetNameArgs[1].substring(1, targetNameArgs[1].length());
+                    Player targetPlayer = Bukkit.getServer().getPlayer(targetName);
+                    if(targetPlayer == null){
+                        p.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
+                        p.closeInventory();
+                    }
+
+                    Inventory ticketInventory = Bukkit.createInventory(null, 45, "Ticket > " + targetPlayer.getName());
+
+                    String ticket = current.getItemMeta().getDisplayName().substring(targetPlayer.getName().length()+3);
+                    ticketInventory.setItem(13, (ItemStack) ItemManager.craftItem(Material.PAPER, ticket));
+                    ticketInventory.setItem(19, (ItemStack) ItemManager.craftItem(Material.SNOWBALL, "Ferme"));
+                    ticketInventory.setItem(21, (ItemStack) ItemManager.craftItem(Material.ENDER_PEARL, "Goto"));
+                    ticketInventory.setItem(23, (ItemStack) ItemManager.craftItem(Material.ENDER_EYE, "Bring"));
+                    ticketInventory.setItem(25, (ItemStack) ItemManager.craftItem(Material.RED_DYE, "Supprimer"));
+                    ticketInventory.setItem(36, (ItemStack) ItemManager.craftItem(Material.DIAMOND_SWORD, "GUI de Modération"));
+                    ticketInventory.setItem(44, (ItemStack) ItemManager.craftItem(Material.BEDROCK, "Salle de Modération"));
+
+                    p.closeInventory();
+                    p.openInventory(ticketInventory);
+                }
+            }else {
+                p.closeInventory();
+            }
+        }
+
+        if(e.getView().getTitle().contains("Ticket > ")){
+            if(Main.Staff.contains(p)){
+                e.setCancelled(true);
+                String playerName = e.getView().getTitle();
+                playerName = playerName.substring(9, playerName.length());
+                Player targetPlayer = Bukkit.getServer().getPlayer(playerName);
+                String nameTicket = e.getInventory().getItem(13).getItemMeta().getDisplayName();
+
+                if(targetPlayer == null){
+                    p.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
+                    p.closeInventory();
+                }
+
+                if(current.getType() == Material.SNOWBALL){
+                    p.closeInventory();
+                }
+                if(current.getType() == Material.ENDER_PEARL){
+                    p.closeInventory();
+                    p.teleport(targetPlayer.getLocation());
+                    p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Tu viens de te téléporter sur §6" + targetPlayer.getName());
+                }
+                if(current.getType() == Material.ENDER_EYE){
+                    p.closeInventory();
+                    targetPlayer.teleport(p.getLocation());
+                    p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Tu viens de téléporter §6" + targetPlayer.getName() + " §fsur toi");
+                }
+                if(current.getType() == Material.RED_DYE){
+                    p.closeInventory();
+                    Main.Tickets.remove(targetPlayer);
+                    p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Le §9Ticket §fa été supprimée");
+                }
+                if(current.getType() == Material.DIAMOND_SWORD){
+                    p.closeInventory();
+                    p.chat("/moderation " + targetPlayer.getName());
+                }
+                if(current.getType() == Material.BEDROCK){
+                    p.closeInventory();
+                    String location = main.getConfig().getString("modspace");
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "teleport " + p.getName() + " " + location);
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "teleport " + targetPlayer.getName() + " " + location);
+                    p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Tu viens de téléporter §6" + targetPlayer.getName() + " §fest toi-même à la §9Salle de Modération");
+                }
+            }else {
+                p.closeInventory();
+            }
+        }
 
     }
 }

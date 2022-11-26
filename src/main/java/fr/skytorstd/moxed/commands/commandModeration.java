@@ -39,6 +39,9 @@ public class commandModeration implements CommandExecutor {
                         if(args[0].equalsIgnoreCase("set")){
                             if(Main.administrateur.contains(p) || p.isOp()){
                                 main.getConfig().set("modspace", p.getLocation().getX() + " " + p.getLocation().getY() + " " + p.getLocation().getZ());
+
+                                main.saveConfig();
+
                                 p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "l'§9Espace de Modération §fviens d'être sauvegardé");
                                 return true;
                             }else {

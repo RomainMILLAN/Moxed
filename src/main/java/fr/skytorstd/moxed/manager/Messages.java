@@ -11,6 +11,9 @@ public enum Messages {
     //ERROR MESSAGE
     ERRORMESSAGE_PLAYER_NOT_CONNECTED(PREFIX_ERRROR.getMessage() + "Veuilliez mettre un joueur en ligne sur le serveur !"),
 
+    //STAFF
+    PREFIX_STAFF("§6► "),
+
     //MAINTENANCE
     MESSAGE_ENTREE_EN_MAINTENANCE(PREFIX_ERRROR.getMessage() + "Le serveur rentre en MAINTENANCE");
 

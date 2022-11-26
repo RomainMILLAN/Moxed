@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public final class Main extends JavaPlugin {
     public static ArrayList<Player> administrateur = new ArrayList<>();
@@ -18,6 +19,7 @@ public final class Main extends JavaPlugin {
     public static ArrayList<Player> Staff = new ArrayList<Player>();
     public static ArrayList<Player> Mute = new ArrayList<Player> ();
     public static ArrayList<Player> Freeze = new ArrayList<Player> ();
+    public static HashMap<Player, String> Tickets = new HashMap<>();
     public static boolean MAINTENANCE = false;
 
 
@@ -73,6 +75,7 @@ public final class Main extends JavaPlugin {
         getCommand("mp").setExecutor(new commandDM(this));
         getCommand("logs").setExecutor(new commandLog(this));
         getCommand("warn").setExecutor(new commandWarn(this));
+        getCommand("ticket").setExecutor(new commandTicket(this));
     }
     @Override
     public void onDisable() {
