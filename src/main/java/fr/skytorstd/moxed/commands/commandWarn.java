@@ -50,22 +50,31 @@ public class commandWarn implements CommandExecutor {
                     if(warnsFile.contains(targetPlayer.getName())){
                         //GET les warns
                         List<String> warnsPlayer = warnsFile.getStringList(targetPlayer.getName());
-                        HashMap<Integer, String> warnsPlayerWithId = new HashMap<>();
-                        for(int i=1; i<warnsPlayer.size(); i++){
-                            warnsPlayerWithId.put(i, warnsPlayer.get(i));
+
+                        if(warnsPlayer.size() > 0){
+                            HashMap<Integer, String> warnsPlayerWithId = new HashMap<>();
+                            int i=1;
+                            for(String str : warnsPlayer){
+                                warnsPlayerWithId.put(i, str);
+                                i++;
+                            }
+                            //Affichages des warns
+                            Inventory warnsInventoryPlayer = Bukkit.createInventory(null, getScaleInventoryWarn(warnsPlayer.size()), targetPlayer.getName() + " > Warns");
+
+                            i=0;
+                            for(Map.Entry<Integer, String> map : warnsPlayerWithId.entrySet()){
+                                warnsInventoryPlayer.setItem(i, (ItemStack) ItemManager.craftItem(Material.ANVIL, map.getKey() + " | " + map.getValue()));
+                                i++;
+                            }
+
+                            p.openInventory(warnsInventoryPlayer);
+
+                            return true;
+                        }else {
+                            p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "ce joueur n'as aucun §9warn");
+                            return true;
                         }
-                        //Affichages des warns
-                        Inventory warnsInventoryPlayer = Bukkit.createInventory(null, getScaleInventoryWarn(warnsPlayer.size()), targetPlayer.getName() + " > Warns");
 
-                        int i=0;
-                        for(Map.Entry<Integer, String> map : warnsPlayerWithId.entrySet()){
-                            warnsInventoryPlayer.setItem(i, (ItemStack) ItemManager.craftItem(Material.ANVIL, map.getKey() + " | " + map.getValue()));
-                            i++;
-                        }
-
-                        p.openInventory(warnsInventoryPlayer);
-
-                        return true;
                     }else {
                         p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "ce joueur n'as aucun §9warn");
                         return true;
@@ -82,14 +91,16 @@ public class commandWarn implements CommandExecutor {
                         //GET les warns
                         List<String> warnsPlayer = warnsFile.getStringList(targetPlayer.getName());
                         HashMap<Integer, String> warnsPlayerWithId = new HashMap<>();
-                        for(int i=1; i<warnsPlayer.size(); i++){
-                            warnsPlayerWithId.put(i, warnsPlayer.get(i));
+                        int i=1;
+                        for(String str : warnsPlayer){
+                            warnsPlayerWithId.put(i, str);
+                            i++;
                         }
 
                         Integer id = Integer.valueOf(args[2])-1;
                         String warnName = warnsPlayer.get(id);
                         for(Map.Entry<Integer, String> map : warnsPlayerWithId.entrySet()){
-                            if(map.getKey().equals(id)){
+                            if(map.getKey().equals(id+1)){
                                 warnsPlayerWithId.remove(map.getKey());
                                 break;
                             }

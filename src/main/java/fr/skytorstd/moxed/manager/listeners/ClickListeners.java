@@ -299,6 +299,7 @@ public class ClickListeners implements Listener {
 
                 if(current.getType() == Material.SNOWBALL){
                     p.closeInventory();
+                    p.chat("/ticket");
                 }
                 if(current.getType() == Material.ENDER_PEARL){
                     p.closeInventory();

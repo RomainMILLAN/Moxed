@@ -2,6 +2,7 @@ package fr.skytorstd.moxed.manager.listeners;
 
 import fr.skytorstd.moxed.Main;
 import fr.skytorstd.moxed.manager.Messages;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -52,6 +53,7 @@ public class JoinQuitEventListeners implements Listener {
             e.setJoinMessage(Messages.PREFIX_NORMAL.getMessage() + " §6" + p.getName() + " §7vient de se connecter !");
         }
 
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "teleport " + p.getName() + " " + main.getConfig().getString("spawnspace"));
     }
 
 
