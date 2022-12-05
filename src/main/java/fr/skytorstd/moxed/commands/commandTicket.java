@@ -46,7 +46,7 @@ public class commandTicket implements CommandExecutor {
             p.openInventory(ticketInventory);
             return true;
         }else {
-            if(args.length > 1){
+            if(args.length > 0){
                 if(Main.Tickets.size() < 54){
                     //TICKET NAME
                     String ticketName = "";
