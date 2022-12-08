@@ -61,12 +61,14 @@ public class ClickListeners implements Listener {
                     if(current.getItemMeta().getDisplayName().equalsIgnoreCase("§9Mute")){
                         if(Main.Staff.contains(p)){
                             e.setCancelled(true);
-                            if(Main.Mute.contains(targetPlayer.getName())){
-                                Main.Mute.remove(targetPlayer.getName());
+                            if(Main.Mute.contains(targetPlayer)){
+                                Main.Mute.remove(targetPlayer);
                                 p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Le joueur §6" + targetPlayer.getName() + " §fvient d'être §9Unmute");
+                                targetPlayer.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Tu vient d'être §9Unmute §fpar §6" + p.getName());
                             }else {
                                 Main.Mute.add(targetPlayer);
                                 p.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Le joueur §6" + targetPlayer.getName() + " §fvient d'être §9Mute");
+                                targetPlayer.sendMessage(Messages.PREFIX_NORMAL.getMessage() + "Tu vient d'être §9Mute §fpar §6" + p.getName());
                             }
                         }
                     }
