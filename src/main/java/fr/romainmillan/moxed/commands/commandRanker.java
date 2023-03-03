@@ -40,7 +40,7 @@ public class commandRanker implements CommandExecutor {
             //Permission
             if(p.isOp()){
 
-                String commandAtUse = "/ranker";
+                String commandAtUse = "/ranker [player]";
 
                 if(args.length == 1){
                     Player targetPlayer = (Player) Bukkit.getServer().getPlayer(args[0]);
@@ -56,10 +56,10 @@ public class commandRanker implements CommandExecutor {
                     rankerInventory.setItem(0, (ItemStack) ItemManager.craftItem(Material.PAPER, rankPlayer));
 
                     //SET
-                    rankerInventory.setItem(8, (ItemStack) ItemManager.craftItem(Material.BARRIER, Ranks.ADMINISTRATEUR.getRanks()));
-                    rankerInventory.setItem(7, (ItemStack) ItemManager.craftItem(Material.ANVIL, Ranks.RESPONSABLE.getRanks()));
-                    rankerInventory.setItem(6, (ItemStack) ItemManager.craftItem(Material.PAPER, Ranks.MODERATEUR.getRanks()));
-                    rankerInventory.setItem(5, (ItemStack) ItemManager.craftItem(Material.GRASS_BLOCK, Ranks.JOUEUR.getRanks()));
+                    rankerInventory.setItem(8, (ItemStack) ItemManager.craftItem(Material.BARRIER, RankerService.getRanksWithRanksState(Ranks.ADMINISTRATEUR)));
+                    rankerInventory.setItem(7, (ItemStack) ItemManager.craftItem(Material.ANVIL, RankerService.getRanksWithRanksState(Ranks.RESPONSABLE)));
+                    rankerInventory.setItem(6, (ItemStack) ItemManager.craftItem(Material.PAPER, RankerService.getRanksWithRanksState(Ranks.MODERATEUR)));
+                    rankerInventory.setItem(5, (ItemStack) ItemManager.craftItem(Material.GRASS_BLOCK, RankerService.getRanksWithRanksState(Ranks.JOUEUR)));
 
                     p.openInventory(rankerInventory);
                     return true;

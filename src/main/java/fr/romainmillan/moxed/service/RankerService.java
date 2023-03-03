@@ -1,9 +1,13 @@
 package fr.romainmillan.moxed.service;
 
-import fr.romainmillan.moxed.Moxed;
-import fr.romainmillan.moxed.databases.RankerDatabase;
+import fr.romainmillan.moxed.Main;
+import fr.romainmillan.moxed.messages.RankerMessages;
 import fr.romainmillan.moxed.state.Ranks;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+
+import java.io.IOException;
 
 public class RankerService {
 
@@ -17,11 +21,11 @@ public class RankerService {
      */
     public static Ranks getRanksPlayer(Player p){
 
-        if(!Moxed.rank.containsKey(p)){
+        if(!Main.rankPlayer.containsKey(p)){
             return Ranks.JOUEUR;
         }
 
-        return Moxed.rank.get(p);
+        return Main.rankPlayer.get(p);
     }
 
     /**
@@ -64,9 +68,20 @@ public class RankerService {
      *
      * @param p
      * @param r
+     * @param main
      */
-    public static void setRanksToPlayer(Player p, Ranks r){
-        RankerDatabase.setRankToPlayer(p.getName(), r);
+    public static void setRanksToPlayer(Player p, Ranks r, Main main){
+        FileConfiguration rankers = YamlConfiguration.loadConfiguration(main.getFile("ranker"));
+
+        rankers.set("Players." + p.getName(), r.getRanks());
+
+        try {
+            rankers.save(main.getFile("ranker"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        p.kickPlayer(RankerMessages.KICK_PLAYER_AFTER_SET_RANK.getMessages());
     }
 
 }

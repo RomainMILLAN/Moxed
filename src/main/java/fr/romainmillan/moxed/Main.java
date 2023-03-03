@@ -2,14 +2,18 @@ package fr.romainmillan.moxed;
 
 import fr.romainmillan.moxed.commands.*;
 import fr.romainmillan.moxed.listeners.RankerListener;
+import fr.romainmillan.moxed.state.Ranks;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public final class Main extends JavaPlugin {
+    public static HashMap<Player, Ranks> rankPlayer = new HashMap<Player, Ranks>();
 
 
     /*
@@ -26,8 +30,9 @@ public final class Main extends JavaPlugin {
                 "  \\/_/  \\/_/   \\/_____/   \\/_/\\/_/   \\/_____/   \\/____/ \n" +
                 "                                                        ");
 
-        //Config
+        //Config & Files
         saveDefaultConfig();
+        createFile("ranker");
 
         //Commands
         getCommand("ranker").setExecutor(new commandRanker(this));

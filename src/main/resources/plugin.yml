@@ -2,7 +2,7 @@ name: Moxed
 version: '${project.version}'
 main: fr.romainmillan.moxed.Main
 api-version: 1.19
-authors: Wabezeter
+authors: [ Wabezeter ]
 description: An usefull plugin for all server of Wabezeter
 website: https://romainmillan.fr/
 commands:
