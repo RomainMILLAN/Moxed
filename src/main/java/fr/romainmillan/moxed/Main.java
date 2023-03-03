@@ -2,15 +2,12 @@ package fr.romainmillan.moxed;
 
 import fr.romainmillan.moxed.commands.*;
 import fr.romainmillan.moxed.listeners.RankerListener;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 
 public final class Main extends JavaPlugin {
 
