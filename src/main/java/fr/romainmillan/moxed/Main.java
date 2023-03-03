@@ -1,7 +1,7 @@
-package fr.skytorstd.moxed;
+package fr.romainmillan.moxed;
 
-import fr.skytorstd.moxed.commands.*;
-import fr.skytorstd.moxed.manager.listeners.*;
+import fr.romainmillan.moxed.commands.*;
+import fr.romainmillan.moxed.listeners.RankerListener;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,15 +13,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public final class Main extends JavaPlugin {
-    public static ArrayList<Player> administrateur = new ArrayList<>();
-    public static ArrayList<Player> responsables = new ArrayList<>();
-    public static ArrayList<Player> moderateur = new ArrayList<>();
-    public static ArrayList<Player> Staff = new ArrayList<Player>();
-    public static ArrayList<Player> Mute = new ArrayList<Player> ();
-    public static ArrayList<Player> Freeze = new ArrayList<Player> ();
-    public static HashMap<Player, String> Tickets = new HashMap<>();
-    public static boolean MAINTENANCE = false;
-
 
 
     /*
@@ -29,11 +20,6 @@ public final class Main extends JavaPlugin {
      */
     @Override
     public void onEnable() {
-        if(getConfig().getString("maintenance").equalsIgnoreCase("off")){
-            MAINTENANCE = false;
-        }else {
-            MAINTENANCE = true;
-        }
 
         System.out.println("\n" +
                 " __    __     ______     __  __     ______     _____    \n" +
@@ -42,41 +28,18 @@ public final class Main extends JavaPlugin {
                 " \\ \\_\\ \\ \\_\\  \\ \\_____\\   /\\_\\/\\_\\  \\ \\_____\\  \\ \\____- \n" +
                 "  \\/_/  \\/_/   \\/_____/   \\/_/\\/_/   \\/_____/   \\/____/ \n" +
                 "                                                        ");
-        System.out.println("[MOXED] Lancement du contrôle plugin");
 
+        //Config
         saveDefaultConfig();
-        createFile("RankerPlayerRank");
-        createFile("Warns");
-        //LOGS
-        createLogs("Logs");
-        createLogs("JoinorQuit");
-        createLogs("Move");
-        createLogs("PlaceandBreak");
-        createLogs("Chat");
-        createLogs("Moderation");
-        createLogs("SpawnandRespawn");
 
-        getServer().getPluginManager().registerEvents(new JoinQuitEventListeners(this), this);
-        getServer().getPluginManager().registerEvents(new ChatListeners(this), this);
-        getServer().getPluginManager().registerEvents(new ClickListeners(this), this);
-        getServer().getPluginManager().registerEvents(new ModiListeners(this), this);
-        getServer().getPluginManager().registerEvents(new LogsListeners(this), this);
-
+        //Commands
         getCommand("ranker").setExecutor(new commandRanker(this));
-        getCommand("maintenance").setExecutor(new commandMaintenance(this));
-        getCommand("staff").setExecutor(new commandStaff(this));
-        getCommand("moderation").setExecutor(new commandModeration(this));
-        getCommand("gm").setExecutor(new commandGM(this));
-        getCommand("day").setExecutor(new commandTime(this));
-        getCommand("night").setExecutor(new commandTime(this));
-        getCommand("freeze").setExecutor(new commandFreeze(this));
-        getCommand("spawn").setExecutor(new commandSpawn(this));
-        getCommand("dm").setExecutor(new commandDM(this));
-        getCommand("mp").setExecutor(new commandDM(this));
-        getCommand("logs").setExecutor(new commandLog(this));
-        getCommand("warn").setExecutor(new commandWarn(this));
-        getCommand("ticket").setExecutor(new commandTicket(this));
+
+        //Listeners
+        getServer().getPluginManager().registerEvents(new RankerListener(this), this);
     }
+
+
     @Override
     public void onDisable() {
         System.out.println("[MOXED] Extinction du plugin");

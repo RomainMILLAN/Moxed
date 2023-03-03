@@ -1,10 +1,9 @@
-package fr.skytorstd.moxed.manager;
+package fr.romainmillan.moxed.manager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.Collection;
-import java.util.List;
 
 public class PlayersServerManager {
     public static void kickAllPlayers(){

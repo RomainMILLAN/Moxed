@@ -1,22 +1,9 @@
 name: Moxed
 version: '${project.version}'
-main: fr.skytorstd.moxed.Main
+main: fr.romainmillan.moxed.Main
 api-version: 1.19
-authors: [ Wabezeter ]
-description: An usefull plugin for all server of SkytorStudio
-website: https://skytorstd.ml/
+authors: Wabezeter
+description: An usefull plugin for all server of Wabezeter
+website: https://romainmillan.fr/
 commands:
   ranker:
-  maintenance:
-  staff:
-  moderation:
-  gm:
-  day:
-  night:
-  freeze:
-  spawn:
-  dm:
-  mp:
-  logs:
-  warn:
-  ticket:

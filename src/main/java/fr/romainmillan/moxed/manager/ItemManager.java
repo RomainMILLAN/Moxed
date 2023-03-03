@@ -1,4 +1,4 @@
-package fr.skytorstd.moxed.manager;
+package fr.romainmillan.moxed.manager;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

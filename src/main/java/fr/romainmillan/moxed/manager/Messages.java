@@ -1,4 +1,4 @@
-package fr.skytorstd.moxed.manager;
+package fr.romainmillan.moxed.manager;
 
 public enum Messages {
 

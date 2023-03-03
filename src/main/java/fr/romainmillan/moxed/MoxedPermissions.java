@@ -1,4 +1,4 @@
-package fr.skytorstd.moxed;
+package fr.romainmillan.moxed;
 
 import org.bukkit.permissions.Permission;
 

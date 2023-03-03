@@ -4,19 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>fr.skytorstd</groupId>
+    <groupId>fr.romainmillan</groupId>
     <artifactId>Moxed</artifactId>
-    <version>0.0-SNAPSHOT</version>
+    <version>2.0</version>
     <packaging>jar</packaging>
 
     <name>Moxed</name>
 
-    <description>An usefull plugin for all server of SkytorStudio</description>
+    <description>An usefull plugin for all server of Wabezeter</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>https://skytorstd.ml/</url>
+    <url>https://romainmillan.fr/</url>
 
     <build>
         <plugins>
@@ -53,7 +53,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>fr.skytorstd.moxed.Main</mainClass>
+                            <mainClass>fr.romainmillan.moxed.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -70,7 +70,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <!-- here we specify that we want to use the main method within the App class -->
-                            <mainClass>fr.skytorstd.moxed.Main</mainClass>
+                            <mainClass>fr.romainmillan.moxed.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -99,7 +99,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.19.2-R0.1-SNAPSHOT</version>
+            <version>1.19.3-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
