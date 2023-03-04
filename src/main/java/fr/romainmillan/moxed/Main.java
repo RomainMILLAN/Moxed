@@ -1,6 +1,7 @@
 package fr.romainmillan.moxed;
 
 import fr.romainmillan.moxed.commands.*;
+import fr.romainmillan.moxed.listeners.ChatListener;
 import fr.romainmillan.moxed.listeners.RankerListener;
 import fr.romainmillan.moxed.state.Ranks;
 import org.bukkit.entity.Player;
@@ -39,6 +40,7 @@ public final class Main extends JavaPlugin {
 
         //Listeners
         getServer().getPluginManager().registerEvents(new RankerListener(this), this);
+        getServer().getPluginManager().registerEvents(new ChatListener(this), this);
     }
 
 
