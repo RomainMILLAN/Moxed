@@ -11,7 +11,8 @@ public enum MoxedMessage {
     EM_ERRORCMD(PREFIX_ERROR.getMessage() + "Mauvaise commande !"),
     EM_ERRORCMD_WITH_COMMAND_TO_USE(PREFIX_ERROR.getMessage() + " Mauvaise commande, merci d'utiliser §f"),
     EM_ERRORPERM(PREFIX_ERROR.getMessage() + "Tu n'as pas la permission pour effectuer cette action"),
-    EM_PLAYER_NOT_CONNECTED(PREFIX_ERROR.getMessage() + "Veuilliez mettre un joueur en ligne");
+    EM_PLAYER_NOT_CONNECTED(PREFIX_ERROR.getMessage() + "Veuilliez mettre un joueur en ligne"),
+    EM_NOT_PLAYER(PREFIX_ERROR.getMessage() + "Vous devez être un joueur pour effectué cette commande");
 
     private final String message;
 
