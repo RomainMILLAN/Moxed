@@ -61,22 +61,22 @@ public class commandGM implements CommandExecutor {
 
                     if(args[1].equalsIgnoreCase("0") || args[1].equalsIgnoreCase("s")){
                         targetPlayer.setGameMode(GameMode.SURVIVAL);
-                        p.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Le mode de jeu de §2" + targetPlayer.getDisplayName() + " §fa été défini sur §9SURVIVAL");
+                        p.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Le mode de jeu de §2" + RankerService.getStringPlayerRank(targetPlayer, main) + " §fa été défini sur §9SURVIVAL");
                         targetPlayer.sendMessage(GMMessages.GM_DEFINED_TO.getMessage() + "SURVIVAL");
                         return true;
                     }else if(args[1].equalsIgnoreCase("1") || args[1].equalsIgnoreCase("c")){
                         targetPlayer.setGameMode(GameMode.CREATIVE);
-                        p.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Le mode de jeu de §2" + targetPlayer.getDisplayName() + " §fa été défini sur §9CREATIVE");
+                        p.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Le mode de jeu de §2" + RankerService.getStringPlayerRank(targetPlayer, main) + " §fa été défini sur §9CREATIVE");
                         targetPlayer.sendMessage(GMMessages.GM_DEFINED_TO.getMessage() + "CREATIVE");
                         return true;
                     }else if(args[1].equalsIgnoreCase("2") || args[1].equalsIgnoreCase("a")){
                         targetPlayer.setGameMode(GameMode.ADVENTURE);
-                        p.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Le mode de jeu de §2" + targetPlayer.getDisplayName() + " §fa été défini sur §9ADVENTURE");
+                        p.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Le mode de jeu de §2" + RankerService.getStringPlayerRank(targetPlayer, main) + " §fa été défini sur §9ADVENTURE");
                         targetPlayer.sendMessage(GMMessages.GM_DEFINED_TO.getMessage() + "ADVENTURE");
                         return true;
                     }else if(args[1].equalsIgnoreCase("3") || args[1].equalsIgnoreCase("sp")){
                         targetPlayer.setGameMode(GameMode.SPECTATOR);
-                        p.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Le mode de jeu de §2" + targetPlayer.getDisplayName() + " §fa été défini sur §9SPECTATOR");
+                        p.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Le mode de jeu de §2" + RankerService.getStringPlayerRank(targetPlayer, main) + " §fa été défini sur §9SPECTATOR");
                         targetPlayer.sendMessage(GMMessages.GM_DEFINED_TO.getMessage() + "SPECTATOR");
                         return true;
                     }else {

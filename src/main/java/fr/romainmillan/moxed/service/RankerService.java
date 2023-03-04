@@ -144,4 +144,52 @@ public class RankerService {
         return false;
     }
 
+    /**
+     * Permet de retourner un message pour le chat
+     * <pre/>
+     *
+     * @param p
+     * @param main
+     * @return <code>String</code>
+     */
+    public static String getStringPlayerMessage(Player p, Main main){
+        if(Main.rankPlayer.containsKey(p)){
+            if(Main.rankPlayer.get(p) == Ranks.ADMINISTRATEUR){
+                return main.getConfig().getString("Ranker.administrateur.messages") + p.getPlayer().getName() + main.getConfig().getString("Ranker.messagesend");
+            }else if(Main.rankPlayer.get(p) == Ranks.RESPONSABLE){
+                return main.getConfig().getString("Ranker.responsable.messages") + p.getPlayer().getName() + main.getConfig().getString("Ranker.messagesend");
+            }else if(Main.rankPlayer.get(p) == Ranks.MODERATEUR){
+                return main.getConfig().getString("Ranker.moderateur.messages") + p.getPlayer().getName() + main.getConfig().getString("Ranker.messagesend");
+            }else {
+                return main.getConfig().getString("Ranker.joueur.messages") + p.getPlayer().getName() + main.getConfig().getString("Ranker.messagesend");
+            }
+        }else {
+            return main.getConfig().getString("Ranker.joueur.messages") + p.getPlayer().getName() + main.getConfig().getString("Ranker.messagesend");
+        }
+    }
+
+    /**
+     * Permet de retourner un message en couleur de son grade + pseudo
+     * <pre/>
+     *
+     * @param p
+     * @param main
+     * @return
+     */
+    public static String getStringPlayerRank(Player p, Main main){
+        if(Main.rankPlayer.containsKey(p)){
+            if(Main.rankPlayer.get(p) == Ranks.ADMINISTRATEUR){
+                return main.getConfig().getString("Ranker.administrateur.messages") + p.getPlayer().getName();
+            }else if(Main.rankPlayer.get(p) == Ranks.RESPONSABLE){
+                return main.getConfig().getString("Ranker.responsable.messages") + p.getPlayer().getName();
+            }else if(Main.rankPlayer.get(p) == Ranks.MODERATEUR){
+                return main.getConfig().getString("Ranker.moderateur.messages") + p.getPlayer().getName();
+            }else {
+                return main.getConfig().getString("Ranker.joueur.messages") + p.getPlayer().getName();
+            }
+        }else {
+            return main.getConfig().getString("Ranker.joueur.messages") + p.getPlayer().getName();
+        }
+    }
+
 }
