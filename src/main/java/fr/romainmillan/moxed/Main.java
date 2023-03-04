@@ -37,6 +37,7 @@ public final class Main extends JavaPlugin {
 
         //Commands
         getCommand("ranker").setExecutor(new commandRanker(this));
+        getCommand("gm").setExecutor(new commandGM(this));
 
         //Listeners
         getServer().getPluginManager().registerEvents(new RankerListener(this), this);

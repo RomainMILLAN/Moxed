@@ -112,4 +112,36 @@ public class RankerService {
         return false;
     }
 
+    /**
+     * Permet de savoir si un joueur passer en paramètre est un Responsable
+     * <pre/>
+     *
+     * @param p
+     * @return <code>true</code> si le joueur est un responsable, <code>false</code> sinon
+     */
+    public static boolean isResponsable(Player p){
+        if(Main.rankPlayer.containsKey(p) && Main.rankPlayer.get(p) == Ranks.RESPONSABLE)
+            return true;
+
+        return false;
+    }
+
+    /**
+     * Permet de savoir si un joueur passer ne paramètre est un membre du Staff
+     * <pre/>
+     *
+     * @param p
+     * @return <code>true</code> si le joueur est un staff, <code>false</code> sinon
+     */
+    public static boolean isStaff(Player p){
+        if(Main.rankPlayer.containsKey(p)){
+            if(Main.rankPlayer.get(p) == Ranks.ADMINISTRATEUR || Main.rankPlayer.get(p) == Ranks.RESPONSABLE || Main.rankPlayer.get(p) == Ranks.MODERATEUR)
+                return true;
+
+            return false;
+        }
+
+        return false;
+    }
+
 }
