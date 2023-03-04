@@ -29,7 +29,7 @@ public class commandSpawn implements CommandExecutor {
             String commandAtUse = "/spawn";
 
             if(args.length == 0){
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "teleport " + p.getName() + " " + main.getConfig().getString("spawnspace"));
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "teleport " + p.getName() + " " + main.getConfig().getString("spawn"));
                 p.sendMessage(SpawnMessages.TELEPORT_TO_SPAWN.getMessages());
                 return true;
             }else if(args.length == 1){
@@ -37,6 +37,7 @@ public class commandSpawn implements CommandExecutor {
                     commandAtUse = "/spawn [set]";
                     if(args[0].equalsIgnoreCase("set")){
                         main.getConfig().set("spawn", p.getLocation().getX() + " " + p.getLocation().getY() + " " + p.getLocation().getZ());
+                        main.saveConfig();
                         p.sendMessage(SpawnMessages.SET_SPAWN_SUCCESS.getMessages());
                         return true;
                     }else {
