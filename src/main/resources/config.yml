@@ -15,3 +15,5 @@ Ranker:
   joueur:
     prefix: "§7"
     messages: "§7[Joueur] "
+
+spawn: "0 151 0"

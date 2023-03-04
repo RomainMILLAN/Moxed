@@ -40,6 +40,7 @@ public final class Main extends JavaPlugin {
         getCommand("gm").setExecutor(new commandGM(this));
         getCommand("day").setExecutor(new commandTime(this));
         getCommand("night").setExecutor(new commandTime(this));
+        getCommand("spawn").setExecutor(new commandSpawn(this));
 
         //Listeners
         getServer().getPluginManager().registerEvents(new RankerListener(this), this);
