@@ -75,6 +75,8 @@ public class RankerService {
 
         rankers.set("Players." + p.getName(), r.getRanks());
 
+        System.out.println(r.getRanks());
+
         try {
             rankers.save(main.getFile("ranker"));
         } catch (IOException e) {
@@ -82,6 +84,32 @@ public class RankerService {
         }
 
         p.kickPlayer(RankerMessages.KICK_PLAYER_AFTER_SET_RANK.getMessages());
+    }
+
+    /**
+     * Permet de set le rangs d'un joueur courrant
+     * <pre/>
+     *
+     * @param p
+     * @param r
+     * @param main
+     */
+    public static void setRankToPlayerCurrent(Player p, Ranks r, Main main){
+        main.rankPlayer.put(p, r);
+    }
+
+    /**
+     * Permet de savoir si un joueur passer en paramètre est un Administrateur
+     * <pre/>
+     *
+     * @param p
+     * @return <code>true</code> si le joueur est un administrateur, <code>false</code> sinon
+     */
+    public static boolean isAdmin(Player p){
+        if(Main.rankPlayer.containsKey(p) && Main.rankPlayer.get(p) == Ranks.ADMINISTRATEUR)
+            return true;
+
+        return false;
     }
 
 }
