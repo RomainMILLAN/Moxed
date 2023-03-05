@@ -213,8 +213,8 @@ public class ModerationListener implements Listener {
             }
 
             if (current.getType() == Material.ANVIL) {
-                p.sendMessage(MoxedMessage.PREFIX_ERROR.getMessage() + "IMPOSSIBLE");
                 p.closeInventory();
+                p.chat("/maintenance on");
             }
 
             if (current.getType() == Material.LIGHTNING_ROD) {

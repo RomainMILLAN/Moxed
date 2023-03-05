@@ -30,7 +30,7 @@ public class commandMaintenance implements CommandExecutor {
                 }else {
                     Player p = (Player) sender;
         
-                    if(RankerService.isAdmin(p)){
+                    if(RankerService.isAdmin(p) && RankerService.isInStaff(p)){
                         return maintenance(args[0], sender, commandAtUse);
                     }else {
                         p.sendMessage(MoxedMessage.EM_ERRORPERM.getMessage());
