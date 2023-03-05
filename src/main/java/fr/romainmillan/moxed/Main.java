@@ -4,6 +4,7 @@ import fr.romainmillan.moxed.commands.*;
 import fr.romainmillan.moxed.listeners.ChatListener;
 import fr.romainmillan.moxed.listeners.FreezeListener;
 import fr.romainmillan.moxed.listeners.LogListener;
+import fr.romainmillan.moxed.listeners.MaintenanceListener;
 import fr.romainmillan.moxed.listeners.ModerationListener;
 import fr.romainmillan.moxed.listeners.RankerListener;
 import fr.romainmillan.moxed.object.Ticket;
@@ -24,6 +25,7 @@ public final class Main extends JavaPlugin {
     public static ArrayList<Player> staffPlayer = new ArrayList<>();
     public static ArrayList<Player> freezePlayer = new ArrayList<>();
     public static ArrayList<Player> mutePlayer = new ArrayList<>();
+    public boolean Maintenance = false;
 
     /*
      * ENABLE/DISABLE
@@ -66,6 +68,7 @@ public final class Main extends JavaPlugin {
         getCommand("cc").setExecutor(new commandChat(this));
         getCommand("warns").setExecutor(new commandWarn(this));
         getCommand("ticket").setExecutor(new commandTicket(this));
+        getCommand("maintenance").setExecutor(new commandMaintenance(this));
 
         // Listeners
         getServer().getPluginManager().registerEvents(new RankerListener(this), this);
@@ -73,6 +76,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ModerationListener(this), this);
         getServer().getPluginManager().registerEvents(new FreezeListener(this), this);
         getServer().getPluginManager().registerEvents(new LogListener(this), this);
+        getServer().getPluginManager().registerEvents(new MaintenanceListener(this), this);
     }
 
     @Override

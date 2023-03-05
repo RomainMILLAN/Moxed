@@ -17,3 +17,4 @@ Ranker:
     messages: "§7[Joueur] "
 
 spawn: "0 151 0"
+maintenance: 'off'

@@ -15,7 +15,12 @@ public enum ModerationMessages {
     MUTE(MoxedMessage.PREFIX_ERROR.getMessage() + "Vous êtes §4Mute"),
     NO_WARNS(MoxedMessage.PREFIX_NORMAL.getMessage() + "La personne sélectionné n'as aucun §9Warns"),
     TICKET_CREATE_SUCESS(MoxedMessage.PREFIX_NORMAL.getMessage() + "Votre ticket à était §9Crée"),
-    TICKET_DELETE_SUCESS(MoxedMessage.PREFIX_NORMAL.getMessage() + "Le ticket à était §9Supprimé");
+    TICKET_DELETE_SUCESS(MoxedMessage.PREFIX_NORMAL.getMessage() + "Le ticket à était §9Supprimé"),
+    MAINTENANCE_ON(MoxedMessage.PREFIX_NORMAL.getMessage() + "La maintenance à était §9Activé"),
+    MAINTENANCE_OFF(MoxedMessage.PREFIX_NORMAL.getMessage() + "La mainteancen à était §9Désactivé"),
+    MAINTENANCE_ON_IMPOSSIBLE(MoxedMessage.PREFIX_ERROR.getMessage() + "La maintenance est déjà §4Activé"),
+    MAINTENANCE_OFF_IMPOSSIBLE(MoxedMessage.PREFIX_ERROR.getMessage() + "La maintenance est déjà §4Désactivé"),
+    MAINTENANCE_ACTIVATE(MoxedMessage.PREFIX_ERROR.getMessage() + "Une maintenance est §4Activé");
 
 
     private String messages;
