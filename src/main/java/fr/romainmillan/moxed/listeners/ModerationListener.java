@@ -4,6 +4,7 @@ import fr.romainmillan.moxed.Main;
 import fr.romainmillan.moxed.manager.ItemManager;
 import fr.romainmillan.moxed.messages.ModerationMessages;
 import fr.romainmillan.moxed.messages.MoxedMessage;
+import fr.romainmillan.moxed.object.Ticket;
 import fr.romainmillan.moxed.service.ModerationService;
 import fr.romainmillan.moxed.service.RankerService;
 
@@ -188,6 +189,8 @@ public class ModerationListener implements Listener {
         }
 
         if (e.getView().getTitle().equals("Système")) {
+            e.setCancelled(true);
+            
             if (current.getType() == Material.BARRIER) {
                 p.closeInventory();
             }
@@ -280,63 +283,56 @@ public class ModerationListener implements Listener {
             }
         }
 
-         /* 
-         * if(e.getView().getTitle().contains("Ticket > ")){
-         * if(Main.staffPlayer.contains(p)){
-         * e.setCancelled(true);
-         * String playerName = e.getView().getTitle();
-         * playerName = playerName.substring(9, playerName.length());
-         * Player targetPlayer = Bukkit.getServer().getPlayer(playerName);
-         * String nameTicket =
-         * e.getInventory().getItem(13).getItemMeta().getDisplayName();
-         * 
-         * if(targetPlayer == null){
-         * p.sendMessage(Messages.ERRORMESSAGE_PLAYER_NOT_CONNECTED.getMessage());
-         * p.closeInventory();
-         * }
-         * 
-         * if(current.getType() == Material.SNOWBALL){
-         * p.closeInventory();
-         * p.chat("/ticket");
-         * }
-         * if(current.getType() == Material.ENDER_PEARL){
-         * p.closeInventory();
-         * p.teleport(targetPlayer.getLocation());
-         * p.sendMessage(Messages.PREFIX_NORMAL.getMessage() +
-         * "Tu viens de te téléporter sur §6" + targetPlayer.getName());
-         * }
-         * if(current.getType() == Material.ENDER_EYE){
-         * p.closeInventory();
-         * targetPlayer.teleport(p.getLocation());
-         * p.sendMessage(Messages.PREFIX_NORMAL.getMessage() +
-         * "Tu viens de téléporter §6" + targetPlayer.getName() + " §fsur toi");
-         * }
-         * if(current.getType() == Material.RED_DYE){
-         * p.closeInventory();
-         * Main.Tickets.remove(targetPlayer);
-         * p.sendMessage(Messages.PREFIX_NORMAL.getMessage() +
-         * "Le §9Ticket §fa été supprimée");
-         * }
-         * if(current.getType() == Material.DIAMOND_SWORD){
-         * p.closeInventory();
-         * p.chat("/moderation " + targetPlayer.getName());
-         * }
-         * if(current.getType() == Material.BEDROCK){
-         * p.closeInventory();
-         * String location = main.getConfig().getString("modspace");
-         * Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "teleport " + p.getName() +
-         * " " + location);
-         * Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "teleport " +
-         * targetPlayer.getName() + " " + location);
-         * p.sendMessage(Messages.PREFIX_NORMAL.getMessage() +
-         * "Tu viens de téléporter §6" + targetPlayer.getName() +
-         * " §fest toi-même à la §9Salle de Modération");
-         * }
-         * }else {
-         * p.closeInventory();
-         * }
-         * }
-         */
+        if(e.getView().getTitle().equals("Tickets")){
+            if(current.getType() == Material.ANVIL){
+                int ticketId = Integer.parseInt(current.getItemMeta().getDisplayName().split(" > ")[0]);
+                Inventory ticketInventory = Bukkit.createInventory(null, 1*9, "Ticket > " + ticketId);
+
+                ticketInventory.setItem(0, (ItemStack) ItemManager.craftItem(Material.BARRIER, "§cReturn"));
+                ticketInventory.setItem(3, (ItemStack) ItemManager.craftItem(Material.ANVIL, current.getItemMeta().getDisplayName().split(" > ")[1]));
+                ticketInventory.setItem(5, (ItemStack) ItemManager.craftItem(Material.PAPER, "§9Modération"));
+                ticketInventory.setItem(8, (ItemStack) ItemManager.craftItem(Material.GREEN_DYE, "§aClose"));
+
+                ticketInventory.setItem(1, (ItemStack) ItemManager.craftItemNone());
+                ticketInventory.setItem(2, (ItemStack) ItemManager.craftItemNone());
+                ticketInventory.setItem(4, (ItemStack) ItemManager.craftItemNone());
+                ticketInventory.setItem(6, (ItemStack) ItemManager.craftItemNone());
+                ticketInventory.setItem(7, (ItemStack) ItemManager.craftItemNone());
+
+                p.openInventory(ticketInventory);
+            }
+        }
+
+        if(e.getView().getTitle().startsWith("Ticket > ")){
+            if(current.getType() == Material.GREEN_DYE){
+                int ticketId = Integer.parseInt(e.getView().getTitle().substring(9));
+
+                for(Ticket ticket : Main.tickets){
+                    if(ticket.getId() == ticketId){
+                        Main.tickets.remove(ticket);
+                        break;
+                    }
+                }
+               
+                p.closeInventory();
+                p.sendMessage(ModerationMessages.TICKET_DELETE_SUCESS.getMessages());
+            }
+
+            if(current.getType() == Material.BARRIER){
+                p.chat("/ticket");
+            }
+
+            if(current.getType() == Material.PAPER){
+                int ticketId = Integer.parseInt(e.getView().getTitle().substring(9));
+
+                for(Ticket ticket : Main.tickets){
+                    if(ticket.getId() == ticketId){
+                        p.chat("/mm " + ticket.getAuthor());
+                    }
+                }
+
+            }
+        }
 
     }
 }

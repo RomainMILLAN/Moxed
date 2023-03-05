@@ -19,3 +19,4 @@ commands:
   system:
   cc:
   warns:
+  ticket:

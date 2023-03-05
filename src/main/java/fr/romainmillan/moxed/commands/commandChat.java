@@ -1,7 +1,5 @@
 package fr.romainmillan.moxed.commands;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

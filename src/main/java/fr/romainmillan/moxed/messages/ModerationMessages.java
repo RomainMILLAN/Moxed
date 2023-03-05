@@ -13,7 +13,9 @@ public enum ModerationMessages {
     PEOPLE_UNMUTE(MoxedMessage.PREFIX_NORMAL.getMessage() + "Vous venez d'être §9UnMute §fpar "),
     CLEAR_SUCCESS(MoxedMessage.PREFIX_NORMAL.getMessage() + "Vous venez de §9Clear §fle chat"),
     MUTE(MoxedMessage.PREFIX_ERROR.getMessage() + "Vous êtes §4Mute"),
-    NO_WARNS(MoxedMessage.PREFIX_NORMAL.getMessage() + "La personne sélectionné n'as aucun §9Warns");
+    NO_WARNS(MoxedMessage.PREFIX_NORMAL.getMessage() + "La personne sélectionné n'as aucun §9Warns"),
+    TICKET_CREATE_SUCESS(MoxedMessage.PREFIX_NORMAL.getMessage() + "Votre ticket à était §9Crée"),
+    TICKET_DELETE_SUCESS(MoxedMessage.PREFIX_NORMAL.getMessage() + "Le ticket à était §9Supprimé");
 
 
     private String messages;

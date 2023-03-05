@@ -5,6 +5,7 @@ import fr.romainmillan.moxed.listeners.ChatListener;
 import fr.romainmillan.moxed.listeners.FreezeListener;
 import fr.romainmillan.moxed.listeners.ModerationListener;
 import fr.romainmillan.moxed.listeners.RankerListener;
+import fr.romainmillan.moxed.object.Ticket;
 import fr.romainmillan.moxed.state.Ranks;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 
 public final class Main extends JavaPlugin {
     public static HashMap<Player, Ranks> rankPlayer = new HashMap<Player, Ranks>();
+    public static ArrayList<Ticket> tickets = new ArrayList<>();
     public static ArrayList<Player> staffPlayer = new ArrayList<>();
     public static ArrayList<Player> freezePlayer = new ArrayList<>();
     public static ArrayList<Player> mutePlayer = new ArrayList<>();
@@ -56,6 +58,7 @@ public final class Main extends JavaPlugin {
         getCommand("system").setExecutor(new commandSystem(this));
         getCommand("cc").setExecutor(new commandChat(this));
         getCommand("warns").setExecutor(new commandWarn(this));
+        getCommand("ticket").setExecutor(new commandTicket(this));
 
         //Listeners
         getServer().getPluginManager().registerEvents(new RankerListener(this), this);
