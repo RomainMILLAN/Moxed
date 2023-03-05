@@ -20,6 +20,7 @@ public final class Main extends JavaPlugin {
     public static HashMap<Player, Ranks> rankPlayer = new HashMap<Player, Ranks>();
     public static ArrayList<Player> staffPlayer = new ArrayList<>();
     public static ArrayList<Player> freezePlayer = new ArrayList<>();
+    public static ArrayList<Player> mutePlayer = new ArrayList<>();
 
 
     /*
@@ -52,6 +53,7 @@ public final class Main extends JavaPlugin {
         getCommand("mm").setExecutor(new commandModeration(this));
         getCommand("freeze").setExecutor(new commandFreeze(this));
         getCommand("system").setExecutor(new commandSystem(this));
+        getCommand("cc").setExecutor(new commandChat(this));
 
         //Listeners
         getServer().getPluginManager().registerEvents(new RankerListener(this), this);

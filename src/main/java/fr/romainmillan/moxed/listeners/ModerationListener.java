@@ -119,7 +119,7 @@ public class ModerationListener implements Listener {
             }
 
             if(current.getType() == Material.PAPER){
-
+                p.chat("/cc mute " + targetPlayer.getName());
             }
 
             if(current.getType() == Material.ANVIL){
