@@ -41,7 +41,12 @@ public class commandWarn implements CommandExecutor {
             Player p = (Player) sender;
             String commantAtUse = "/warns [player] <add/remove> [id/warn]";
 
-            if (RankerService.isStaff(p)) {
+            if (RankerService.isInStaff(p)) {
+
+                if(args.length == 0){
+                    p.sendMessage(MoxedMessage.EM_ERRORCMD_WITH_COMMAND_TO_USE.getMessage() + commantAtUse);
+                    return false;
+                }
 
                 FileConfiguration warnsFile = YamlConfiguration.loadConfiguration(main.getFile("warns"));
                 Player targetPlayer = (Player) Bukkit.getServer().getPlayer(args[0]);
@@ -64,13 +69,19 @@ public class commandWarn implements CommandExecutor {
                                 i++;
                             }
 
+                            int scale = getScaleInventoryWarn(warnsListPlayer.size());
                             Inventory warnsInventoryPlayer = Bukkit.createInventory(null,
-                                    getScaleInventoryWarn(warnsListPlayer.size()), targetPlayer.getName() + " > Warns");
+                                    scale, targetPlayer.getName() + " > Warns");
 
                             i = 0;
                             for (Map.Entry<Integer, String> map : warnsPlayerWithId.entrySet()) {
                                 warnsInventoryPlayer.setItem(i, (ItemStack) ItemManager.craftItem(Material.ANVIL,
                                         map.getKey() + " | " + map.getValue()));
+                                i++;
+                            }
+
+                            while(i < scale){
+                                warnsInventoryPlayer.setItem(i, (ItemStack) ItemManager.craftItemNone());
                                 i++;
                             }
 
@@ -87,7 +98,7 @@ public class commandWarn implements CommandExecutor {
                         return true;
                     }
 
-                } else if (args.length > 2) {
+                }else if (args.length > 2) {
                     if (args[1].equalsIgnoreCase("add")) {
 
                         List<String> warnsPlayer = warnsFile.getStringList(targetPlayer.getName());

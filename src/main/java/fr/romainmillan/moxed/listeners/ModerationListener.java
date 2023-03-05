@@ -261,9 +261,7 @@ public class ModerationListener implements Listener {
         }
 
         if(e.getView().getTitle().startsWith("Warn | ")){
-            System.out.println(e.getView().getTitle());
             String targetName = e.getView().getTitle().split(" | ")[2];
-            System.out.println(e.getView().getTitle().split(" | ")[2]);
             Player targetPlayer = Bukkit.getServer().getPlayer(targetName);
             if (targetPlayer == null) {
                 p.sendMessage(MoxedMessage.EM_PLAYER_NOT_CONNECTED.getMessage());
