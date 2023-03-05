@@ -123,19 +123,23 @@ public class ModerationListener implements Listener {
             }
 
             if(current.getType() == Material.ANVIL){
-
+                
             }
 
             if(current.getType() == Material.BLUE_ICE){
-                p.chat("/freeze " + targetPlayer.getName());
+                ModerationService.freezeTargetPlayer(p, targetPlayer, main);
             }
 
             if(current.getType() == Material.IRON_SWORD){
-
+                targetPlayer.kickPlayer("Vous venez d'être kick par " + RankerService.getStringPlayerRank(p, main));
+                p.sendMessage(ModerationMessages.KICK_PERSON.getMessages() + RankerService.getStringPlayerRank(p, main));
+                p.closeInventory();
             }
 
             if(current.getType() == Material.NETHERITE_AXE){
-
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ban " + targetPlayer.getName() + " Vous venez d'être bannie par " + RankerService.getStringPlayerRank(targetPlayer, main));
+                p.sendMessage(ModerationMessages.BAN_PERSON.getMessages() + RankerService.getStringPlayerRank(p, main));
+                p.closeInventory();
             }
         }
 
