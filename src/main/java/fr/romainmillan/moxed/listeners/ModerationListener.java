@@ -137,7 +137,7 @@ public class ModerationListener implements Listener {
             }
 
             if(current.getType() == Material.NETHERITE_AXE){
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ban " + targetPlayer.getName() + " Vous venez d'être bannie par " + RankerService.getStringPlayerRank(targetPlayer, main));
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ban " + targetPlayer.getName() + " Vous êtes bannie par " + RankerService.getStringPlayerRank(targetPlayer, main));
                 p.sendMessage(ModerationMessages.BAN_PERSON.getMessages() + RankerService.getStringPlayerRank(p, main));
                 p.closeInventory();
             }
