@@ -128,6 +128,10 @@ public class ModerationListener implements Listener {
 
             }
 
+            if(current.getType() == Material.BLUE_ICE){
+                p.chat("/freeze " + targetPlayer.getName());
+            }
+
             if(current.getType() == Material.IRON_SWORD){
 
             }

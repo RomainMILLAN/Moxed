@@ -2,6 +2,7 @@ package fr.romainmillan.moxed;
 
 import fr.romainmillan.moxed.commands.*;
 import fr.romainmillan.moxed.listeners.ChatListener;
+import fr.romainmillan.moxed.listeners.FreezeListener;
 import fr.romainmillan.moxed.listeners.ModerationListener;
 import fr.romainmillan.moxed.listeners.RankerListener;
 import fr.romainmillan.moxed.state.Ranks;
@@ -19,6 +20,7 @@ import java.util.HashMap;
 public final class Main extends JavaPlugin {
     public static HashMap<Player, Ranks> rankPlayer = new HashMap<Player, Ranks>();
     public static ArrayList<Player> staffPlayer = new ArrayList<>();
+    public static ArrayList<Player> freezePlayer = new ArrayList<>();
 
 
     /*
@@ -49,11 +51,13 @@ public final class Main extends JavaPlugin {
         getCommand("mp").setExecutor(new commandDM(this));
         getCommand("staff").setExecutor(new commandStaff(this));
         getCommand("mm").setExecutor(new commandModeration(this));
+        getCommand("freeze").setExecutor(new commandFreeze(this));
 
         //Listeners
         getServer().getPluginManager().registerEvents(new RankerListener(this), this);
         getServer().getPluginManager().registerEvents(new ChatListener(this), this);
         getServer().getPluginManager().registerEvents(new ModerationListener(this), this);
+        getServer().getPluginManager().registerEvents(new FreezeListener(this), this);
     }
 
 

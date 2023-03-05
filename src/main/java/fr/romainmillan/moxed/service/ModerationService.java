@@ -2,6 +2,7 @@ package fr.romainmillan.moxed.service;
 
 import fr.romainmillan.moxed.Main;
 import fr.romainmillan.moxed.manager.ItemManager;
+import fr.romainmillan.moxed.messages.ModerationMessages;
 import fr.romainmillan.moxed.messages.MoxedMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -60,8 +61,22 @@ public class ModerationService {
         }
     }
 
-    public static void gamemodeToTargetPlayer(GameMode gm, Player player, Player targetPlayer, Main main){
-
+    /**
+     * Permet de freeze ou non un joueur
+     * <pre/>
+     *
+     * @param player
+     * @param targetPlayer
+     * @param main
+     */
+    public static void freezeTargetPlayer(Player player, Player targetPlayer, Main main){
+        if(Main.freezePlayer.contains(targetPlayer)){
+            Main.freezePlayer.remove(targetPlayer);
+            player.sendMessage(ModerationMessages.UNFREEZE_PLAYER.getMessages() + RankerService.getStringPlayerRank(targetPlayer, main));
+        }else {
+            Main.freezePlayer.add(targetPlayer);
+            player.sendMessage(ModerationMessages.FREEZE_PLAYER.getMessages() + RankerService.getStringPlayerRank(targetPlayer, main));
+        }
     }
 
     /**
@@ -125,15 +140,15 @@ public class ModerationService {
         Inventory moderationSanctionsInventory = Bukkit.createInventory(null, 1*9, targetPlayer.getName() + " > Moderation > Sanctions");
 
         moderationSanctionsInventory.setItem(0, (ItemStack) ItemManager.craftItem(Material.BARRIER, "§cReturn"));
-        moderationSanctionsInventory.setItem(5, (ItemStack) ItemManager.craftItem(Material.PAPER, "§9Mute"));
-        moderationSanctionsInventory.setItem(6, (ItemStack) ItemManager.craftItem(Material.ANVIL, "§9Warns"));
+        moderationSanctionsInventory.setItem(4, (ItemStack) ItemManager.craftItem(Material.PAPER, "§9Mute"));
+        moderationSanctionsInventory.setItem(5, (ItemStack) ItemManager.craftItem(Material.ANVIL, "§9Warns"));
+        moderationSanctionsInventory.setItem(6, (ItemStack) ItemManager.craftItem(Material.BLUE_ICE, "§9Freeze"));
         moderationSanctionsInventory.setItem(7, (ItemStack) ItemManager.craftItem(Material.IRON_SWORD, "§6Kick"));
         moderationSanctionsInventory.setItem(8, (ItemStack) ItemManager.craftItem(Material.NETHERITE_AXE, "§cBan"));
 
         moderationSanctionsInventory.setItem(1, (ItemStack) ItemManager.craftItemNone());
         moderationSanctionsInventory.setItem(2, (ItemStack) ItemManager.craftItemNone());
         moderationSanctionsInventory.setItem(3, (ItemStack) ItemManager.craftItemNone());
-        moderationSanctionsInventory.setItem(4, (ItemStack) ItemManager.craftItemNone());
 
         return moderationSanctionsInventory;
     }
