@@ -1,18 +1,16 @@
 package fr.romainmillan.moxed.listeners;
 
 import fr.romainmillan.moxed.Main;
-import fr.romainmillan.moxed.manager.ItemManager;
+import fr.romainmillan.moxed.messages.ModerationMessages;
 import fr.romainmillan.moxed.messages.MoxedMessage;
 import fr.romainmillan.moxed.service.ModerationService;
 import fr.romainmillan.moxed.service.RankerService;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class ModerationListener implements Listener {
@@ -170,6 +168,35 @@ public class ModerationListener implements Listener {
 
             if(current.getType() == Material.GLASS_PANE){
                 p.chat("/gm " + targetPlayer.getName() + " 3");
+            }
+        }
+
+        if(e.getView().getTitle().equals("Système")){
+            if(current.getType() == Material.BARRIER){
+                p.closeInventory();
+            }
+
+            if(current.getType() == Material.CONDUIT){
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "weather clear");
+                p.sendMessage(ModerationMessages.WEATHER_CLEAR.getMessages());
+            }
+
+            if(current.getType() == Material.RECOVERY_COMPASS){
+                p.chat("/night");
+            }
+
+            if(current.getType() == Material.CLOCK){
+                p.chat("/day");
+            }
+
+            if(current.getType() == Material.ANVIL){
+                p.sendMessage(MoxedMessage.PREFIX_ERROR.getMessage() + "IMPOSSIBLE");
+                p.closeInventory();
+            }
+
+            if(current.getType() == Material.LIGHTNING_ROD){
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stop");
+                p.closeInventory();
             }
         }
 

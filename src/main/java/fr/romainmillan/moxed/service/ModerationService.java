@@ -5,12 +5,10 @@ import fr.romainmillan.moxed.manager.ItemManager;
 import fr.romainmillan.moxed.messages.ModerationMessages;
 import fr.romainmillan.moxed.messages.MoxedMessage;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class ModerationService {
 
@@ -18,79 +16,93 @@ public class ModerationService {
      * MM
      */
     /**
-     * Permet de téléporter une personne sur une autre et d'envoyer un message de confirmation
+     * Permet de téléporter une personne sur une autre et d'envoyer un message de
+     * confirmation
+     * 
      * <pre/>
      *
      * @param targetPlayer
      * @param player
      * @param main
      */
-    public static void bringTargetToPlayer(Player targetPlayer, Player player, Main main){
+    public static void bringTargetToPlayer(Player targetPlayer, Player player, Main main) {
         targetPlayer.teleport(player.getLocation());
-        player.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Tu viens de téléporter " + RankerService.getStringPlayerRank(targetPlayer, main) + " §fsur toi");
+        player.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Tu viens de téléporter "
+                + RankerService.getStringPlayerRank(targetPlayer, main) + " §fsur toi");
     }
 
     /**
-     * Permet de téléporter le joueur player sur le joueur target et d'envoyer un message
+     * Permet de téléporter le joueur player sur le joueur target et d'envoyer un
+     * message
+     * 
      * <pre/>
      *
      * @param targetPlayer
      * @param player
      * @param main
      */
-    public static void gotoPlayerToTarget(Player player, Player targetPlayer, Main main){
+    public static void gotoPlayerToTarget(Player player, Player targetPlayer, Main main) {
         player.teleport(targetPlayer.getLocation());
-        player.sendMessage(MoxedMessage .PREFIX_NORMAL.getMessage() + "Tu viens de te téléporter sur " + RankerService.getStringPlayerRank(targetPlayer, main));
+        player.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Tu viens de te téléporter sur "
+                + RankerService.getStringPlayerRank(targetPlayer, main));
     }
 
     /**
      * Permet de vanish ou devanish un player target passer en paramètre
+     * 
      * <pre/>
      *
      * @param player
      * @param targetPlayer
      * @param main
      */
-    public static void vanishTarget(Player player, Player targetPlayer, Main main){
-        if(targetPlayer.isInvisible() == true){
+    public static void vanishTarget(Player player, Player targetPlayer, Main main) {
+        if (targetPlayer.isInvisible() == true) {
             targetPlayer.setInvisible(false);
-            player.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Tu viens de passer " + RankerService.getStringPlayerRank(targetPlayer, main) + " §fen §9Visible");
-        }else {
+            player.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Tu viens de passer "
+                    + RankerService.getStringPlayerRank(targetPlayer, main) + " §fen §9Visible");
+        } else {
             targetPlayer.setInvisible(true);
-            player.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Tu viens de passer " + RankerService.getStringPlayerRank(targetPlayer, main) + " §fen §9Invisible");
+            player.sendMessage(MoxedMessage.PREFIX_NORMAL.getMessage() + "Tu viens de passer "
+                    + RankerService.getStringPlayerRank(targetPlayer, main) + " §fen §9Invisible");
         }
     }
 
     /**
      * Permet de freeze ou non un joueur
+     * 
      * <pre/>
      *
      * @param player
      * @param targetPlayer
      * @param main
      */
-    public static void freezeTargetPlayer(Player player, Player targetPlayer, Main main){
-        if(Main.freezePlayer.contains(targetPlayer)){
+    public static void freezeTargetPlayer(Player player, Player targetPlayer, Main main) {
+        if (Main.freezePlayer.contains(targetPlayer)) {
             Main.freezePlayer.remove(targetPlayer);
-            player.sendMessage(ModerationMessages.UNFREEZE_PLAYER.getMessages() + RankerService.getStringPlayerRank(targetPlayer, main));
-        }else {
+            player.sendMessage(ModerationMessages.UNFREEZE_PLAYER.getMessages()
+                    + RankerService.getStringPlayerRank(targetPlayer, main));
+        } else {
             Main.freezePlayer.add(targetPlayer);
-            player.sendMessage(ModerationMessages.FREEZE_PLAYER.getMessages() + RankerService.getStringPlayerRank(targetPlayer, main));
+            player.sendMessage(ModerationMessages.FREEZE_PLAYER.getMessages()
+                    + RankerService.getStringPlayerRank(targetPlayer, main));
         }
     }
 
     /**
      * Crée l'inventaire de modération
+     * 
      * <pre/>
      *
      * @param targetPlayer
      * @param main
      * @return
      */
-    public static Inventory createModerationInventory(Player targetPlayer, Main main){
-        Inventory moderationInventory = Bukkit.createInventory(null, 1*9, targetPlayer.getName() + " > Moderation");
+    public static Inventory createModerationInventory(Player targetPlayer, Main main) {
+        Inventory moderationInventory = Bukkit.createInventory(null, 1 * 9, targetPlayer.getName() + " > Moderation");
 
-        moderationInventory.setItem(0, (ItemStack) ItemManager.craftItem(Material.PAPER, RankerService.getStringPlayerRank(targetPlayer, main)));
+        moderationInventory.setItem(0, (ItemStack) ItemManager.craftItem(Material.PAPER,
+                RankerService.getStringPlayerRank(targetPlayer, main)));
 
         moderationInventory.setItem(6, (ItemStack) ItemManager.craftItem(Material.CHEST, "Utils"));
         moderationInventory.setItem(7, (ItemStack) ItemManager.craftItem(Material.NETHERITE_SWORD, "Sanctions"));
@@ -107,13 +119,15 @@ public class ModerationService {
 
     /**
      * Crée l'inventaire utile du gui de moderation
+     * 
      * <pre/>
      *
      * @param targetPlayer
      * @return
      */
-    public static Inventory createUtilsInventory(Player targetPlayer){
-        Inventory moderationUtilsInventory = Bukkit.createInventory(null, 1*9, targetPlayer.getName() + " > Moderation > Utils");
+    public static Inventory createUtilsInventory(Player targetPlayer) {
+        Inventory moderationUtilsInventory = Bukkit.createInventory(null, 1 * 9,
+                targetPlayer.getName() + " > Moderation > Utils");
 
         moderationUtilsInventory.setItem(0, (ItemStack) ItemManager.craftItem(Material.BARRIER, "§cReturn"));
         moderationUtilsInventory.setItem(3, (ItemStack) ItemManager.craftItem(Material.ENDER_PEARL, "§fGoto"));
@@ -131,13 +145,15 @@ public class ModerationService {
 
     /**
      * Crée l'inventaire des sacntions du gui de modération
+     * 
      * <pre/>
      *
      * @param targetPlayer
      * @return
      */
-    public static Inventory createSanctionsInventory(Player targetPlayer){
-        Inventory moderationSanctionsInventory = Bukkit.createInventory(null, 1*9, targetPlayer.getName() + " > Moderation > Sanctions");
+    public static Inventory createSanctionsInventory(Player targetPlayer) {
+        Inventory moderationSanctionsInventory = Bukkit.createInventory(null, 1 * 9,
+                targetPlayer.getName() + " > Moderation > Sanctions");
 
         moderationSanctionsInventory.setItem(0, (ItemStack) ItemManager.craftItem(Material.BARRIER, "§cReturn"));
         moderationSanctionsInventory.setItem(4, (ItemStack) ItemManager.craftItem(Material.PAPER, "§9Mute"));
@@ -155,13 +171,15 @@ public class ModerationService {
 
     /**
      * Crée l'inventaire du gamemode du gui de modération
+     * 
      * <pre/>
      *
      * @param targetPlayer
      * @return
      */
-    public static Inventory createGamemodeInventory(Player targetPlayer){
-        Inventory moderationGamemodeInventory = Bukkit.createInventory(null, 1*9, targetPlayer.getName() + " > Moderation > GM");
+    public static Inventory createGamemodeInventory(Player targetPlayer) {
+        Inventory moderationGamemodeInventory = Bukkit.createInventory(null, 1 * 9,
+                targetPlayer.getName() + " > Moderation > GM");
 
         moderationGamemodeInventory.setItem(0, (ItemStack) ItemManager.craftItem(Material.BARRIER, "§cReturn"));
         moderationGamemodeInventory.setItem(5, (ItemStack) ItemManager.craftItem(Material.COBBLESTONE, "§8GM 0"));
@@ -175,5 +193,28 @@ public class ModerationService {
         moderationGamemodeInventory.setItem(4, (ItemStack) ItemManager.craftItemNone());
 
         return moderationGamemodeInventory;
+    }
+
+    /**
+     * Permet de crée un gui de gestion du système de serveur
+     * <pre/>
+     * 
+     * @return
+     */
+    public static Inventory createSystemInventory() {
+        Inventory systemInventory = Bukkit.createInventory(null, 1 * 9, "Système");
+
+        systemInventory.setItem(0, (ItemStack) ItemManager.craftItem(Material.BARRIER, "Fermer l'onglet"));
+        systemInventory.setItem(4, (ItemStack) ItemManager.craftItem(Material.CONDUIT, "Enlever la pluie"));
+        systemInventory.setItem(5, (ItemStack) ItemManager.craftItem(Material.RECOVERY_COMPASS, "Mettre la nuit"));
+        systemInventory.setItem(6, (ItemStack) ItemManager.craftItem(Material.CLOCK, "Mettre le jour"));
+        systemInventory.setItem(7, (ItemStack) ItemManager.craftItem(Material.ANVIL, "Mettre en maintenance"));
+        systemInventory.setItem(8, (ItemStack) ItemManager.craftItem(Material.LIGHTNING_ROD, "Fermée le serveur"));
+
+        systemInventory.setItem(1, (ItemStack) ItemManager.craftItemNone());
+        systemInventory.setItem(2, (ItemStack) ItemManager.craftItemNone());
+        systemInventory.setItem(3, (ItemStack) ItemManager.craftItemNone());
+
+        return systemInventory;
     }
 }

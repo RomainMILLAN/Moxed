@@ -1,9 +1,7 @@
 package fr.romainmillan.moxed.commands;
 
 import fr.romainmillan.moxed.Main;
-import fr.romainmillan.moxed.MoxedPermissions;
 import fr.romainmillan.moxed.manager.ItemManager;
-import fr.romainmillan.moxed.manager.Messages;
 import fr.romainmillan.moxed.messages.MoxedMessage;
 import fr.romainmillan.moxed.service.RankerService;
 import fr.romainmillan.moxed.state.Ranks;
@@ -12,13 +10,9 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-import java.io.IOException;
 
 public class commandRanker implements CommandExecutor {
     public Main main;

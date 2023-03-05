@@ -4,45 +4,40 @@ import fr.romainmillan.moxed.Main;
 import fr.romainmillan.moxed.messages.MoxedMessage;
 import fr.romainmillan.moxed.service.ModerationService;
 import fr.romainmillan.moxed.service.RankerService;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class commandModeration implements CommandExecutor {
+public class commandSystem implements CommandExecutor {
     private Main main;
-    public commandModeration(Main main) {
+    public commandSystem(Main main) {
         this.main = main;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        if(label.equalsIgnoreCase("mm")){
-
+        if(label.equalsIgnoreCase("system")){
             if(!(sender instanceof Player)){
                 sender.sendMessage(MoxedMessage.EM_NOT_PLAYER.getMessage());
                 return false;
             }
 
             Player p = (Player) sender;
-            String commandAtUse = "/mm [player]";
+            String commandAtUse = "/system";
 
-            if(RankerService.isStaff(p) && RankerService.isInStaff(p)){
-                if(args.length == 1){
-                    Player targetPlayer = (Player) Bukkit.getServer().getPlayer(args[0]);
-                    if(targetPlayer == null){
-                        p.sendMessage(MoxedMessage.EM_PLAYER_NOT_CONNECTED.getMessage());
-                        return false;
-                    }
+            if(RankerService.isAdmin(p)){
 
-                    p.openInventory(ModerationService.createModerationInventory(targetPlayer, main));
+                if(args.length == 0){
+                    
+                    p.openInventory(ModerationService.createSystemInventory());
 
                 }else {
-                    p.sendMessage(MoxedMessage.EM_ERRORCMD_WITH_COMMAND_TO_USE.getMessage() + commandAtUse);
+                    p.sendMessage(MoxedMessage.EM_ERRORCMD_WITH_COMMAND_TO_USE + commandAtUse);
                     return false;
                 }
+
             }else {
                 p.sendMessage(MoxedMessage.EM_ERRORPERM.getMessage());
                 return false;

@@ -8,7 +8,6 @@ import fr.romainmillan.moxed.listeners.RankerListener;
 import fr.romainmillan.moxed.state.Ranks;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.checkerframework.checker.units.qual.A;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -52,6 +51,7 @@ public final class Main extends JavaPlugin {
         getCommand("staff").setExecutor(new commandStaff(this));
         getCommand("mm").setExecutor(new commandModeration(this));
         getCommand("freeze").setExecutor(new commandFreeze(this));
+        getCommand("system").setExecutor(new commandSystem(this));
 
         //Listeners
         getServer().getPluginManager().registerEvents(new RankerListener(this), this);
