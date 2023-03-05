@@ -127,6 +127,20 @@ public class RankerService {
     }
 
     /**
+     * Permet de savoir si un joueur passer en paramètre est un Moderateur
+     * <pre/>
+     *
+     * @param p
+     * @return <code>true</code> si le joueur est un moderateur, <code>false</code> sinon
+     */
+    public static boolean isModerator(Player p){
+        if(Main.rankPlayer.containsKey(p) && Main.rankPlayer.get(p) == Ranks.MODERATEUR)
+            return true;
+
+        return false;
+    }
+
+    /**
      * Permet de savoir si un joueur passer ne paramètre est un membre du Staff
      * <pre/>
      *

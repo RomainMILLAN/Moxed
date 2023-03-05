@@ -1,10 +1,10 @@
 package fr.romainmillan.moxed.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.omg.IOP.ServiceContextHolder;
 
 import fr.romainmillan.moxed.Main;
 import fr.romainmillan.moxed.messages.ModerationMessages;
@@ -24,22 +24,22 @@ public class commandMaintenance implements CommandExecutor {
         if(label.equalsIgnoreCase("maintenance")){
 
             String commandAtUse = "/maintenance <on/off>";
-            if(!(sender instanceof Player)){
-                return maintenance(args[0], sender, commandAtUse);
-            }else {
-                Player p = (Player) sender;
-    
-                if(RankerService.isAdmin(p)){
-                    if(args.length == 1){
+            if(args.length == 1 && (args[0].equalsIgnoreCase("on") || args[0].equalsIgnoreCase("off"))){
+                if(!(sender instanceof Player)){
+                    return maintenance(args[0], sender, commandAtUse);
+                }else {
+                    Player p = (Player) sender;
+        
+                    if(RankerService.isAdmin(p)){
                         return maintenance(args[0], sender, commandAtUse);
                     }else {
-                        p.sendMessage(MoxedMessage.EM_ERRORCMD_WITH_COMMAND_TO_USE.getMessage() + commandAtUse);
+                        p.sendMessage(MoxedMessage.EM_ERRORPERM.getMessage());
                         return false;
                     }
-                }else {
-                    p.sendMessage(MoxedMessage.EM_ERRORPERM.getMessage());
-                    return false;
                 }
+            }else {
+                sender.sendMessage(MoxedMessage.EM_ERRORCMD_WITH_COMMAND_TO_USE.getMessage() + commandAtUse);
+                return false;
             }
         }
 
@@ -60,6 +60,15 @@ public class commandMaintenance implements CommandExecutor {
                 main.getConfig().set("maintenance", "on");
                 main.Maintenance = true;
                 sender.sendMessage(ModerationMessages.MAINTENANCE_ON.getMessages());
+
+                for(Player player : Bukkit.getOnlinePlayers()){
+                    if(RankerService.isAdmin(player) || RankerService.isResponsable(player) || RankerService.isModerator(player)){
+                        player.sendMessage(MoxedMessage.PREFIX_STAFF.getMessage() + "Le serveur vient de passer en §6Maintenance");
+                    }else {
+                        player.kickPlayer(ModerationMessages.MAINTENANCE_ACTIVATE.getMessages());
+                    }
+                }
+
                 return true;
             }else {
                 sender.sendMessage(ModerationMessages.MAINTENANCE_ON_IMPOSSIBLE.getMessages());
