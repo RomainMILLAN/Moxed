@@ -2,19 +2,23 @@ package fr.romainmillan.moxed;
 
 import fr.romainmillan.moxed.commands.*;
 import fr.romainmillan.moxed.listeners.ChatListener;
+import fr.romainmillan.moxed.listeners.ModerationListener;
 import fr.romainmillan.moxed.listeners.RankerListener;
 import fr.romainmillan.moxed.state.Ranks;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.checkerframework.checker.units.qual.A;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
 public final class Main extends JavaPlugin {
     public static HashMap<Player, Ranks> rankPlayer = new HashMap<Player, Ranks>();
+    public static ArrayList<Player> staffPlayer = new ArrayList<>();
 
 
     /*
@@ -43,10 +47,13 @@ public final class Main extends JavaPlugin {
         getCommand("spawn").setExecutor(new commandSpawn(this));
         getCommand("dm").setExecutor(new commandDM(this));
         getCommand("mp").setExecutor(new commandDM(this));
+        getCommand("staff").setExecutor(new commandStaff(this));
+        getCommand("mm").setExecutor(new commandModeration(this));
 
         //Listeners
         getServer().getPluginManager().registerEvents(new RankerListener(this), this);
         getServer().getPluginManager().registerEvents(new ChatListener(this), this);
+        getServer().getPluginManager().registerEvents(new ModerationListener(this), this);
     }
 
 

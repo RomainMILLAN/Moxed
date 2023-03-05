@@ -12,4 +12,12 @@ public class ItemManager {
         itemstack.setItemMeta(itemMeta);
         return itemstack;
     }
+
+    public static Object craftItemNone(){
+        ItemStack itemstack = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
+        ItemMeta itemMeta = itemstack.getItemMeta();
+        itemMeta.setDisplayName(" ");
+        itemstack.setItemMeta(itemMeta);
+        return itemstack;
+    }
 }

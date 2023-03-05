@@ -145,6 +145,20 @@ public class RankerService {
     }
 
     /**
+     * Permet de savoir si un joueur passer en parametre à activer le mode staff
+     * <pre/>
+     *
+     * @param p
+     * @return <code>true</code> si le joueur est en mode staff, <code>false</code> sinon
+     */
+    public static boolean isInStaff(Player p){
+        if (Main.staffPlayer.contains(p))
+            return true;
+
+        return false;
+    }
+
+    /**
      * Permet de retourner un message pour le chat
      * <pre/>
      *
