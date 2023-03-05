@@ -3,6 +3,7 @@ package fr.romainmillan.moxed;
 import fr.romainmillan.moxed.commands.*;
 import fr.romainmillan.moxed.listeners.ChatListener;
 import fr.romainmillan.moxed.listeners.FreezeListener;
+import fr.romainmillan.moxed.listeners.LogListener;
 import fr.romainmillan.moxed.listeners.ModerationListener;
 import fr.romainmillan.moxed.listeners.RankerListener;
 import fr.romainmillan.moxed.object.Ticket;
@@ -24,7 +25,6 @@ public final class Main extends JavaPlugin {
     public static ArrayList<Player> freezePlayer = new ArrayList<>();
     public static ArrayList<Player> mutePlayer = new ArrayList<>();
 
-
     /*
      * ENABLE/DISABLE
      */
@@ -39,12 +39,19 @@ public final class Main extends JavaPlugin {
                 "  \\/_/  \\/_/   \\/_____/   \\/_/\\/_/   \\/_____/   \\/____/ \n" +
                 "                                                        ");
 
-        //Config & Files
+        // Config & Files
         saveDefaultConfig();
         createFile("ranker");
         createFile("warns");
+        createLogs("Logs");
+        createLogs("JoinorQuit");
+        createLogs("Move");
+        createLogs("PlaceandBreak");
+        createLogs("Chat");
+        createLogs("Moderation");
+        createLogs("SpawnandRespawn");
 
-        //Commands
+        // Commands
         getCommand("ranker").setExecutor(new commandRanker(this));
         getCommand("gm").setExecutor(new commandGM(this));
         getCommand("day").setExecutor(new commandTime(this));
@@ -60,35 +67,31 @@ public final class Main extends JavaPlugin {
         getCommand("warns").setExecutor(new commandWarn(this));
         getCommand("ticket").setExecutor(new commandTicket(this));
 
-        //Listeners
+        // Listeners
         getServer().getPluginManager().registerEvents(new RankerListener(this), this);
         getServer().getPluginManager().registerEvents(new ChatListener(this), this);
         getServer().getPluginManager().registerEvents(new ModerationListener(this), this);
         getServer().getPluginManager().registerEvents(new FreezeListener(this), this);
+        getServer().getPluginManager().registerEvents(new LogListener(this), this);
     }
-
 
     @Override
     public void onDisable() {
         System.out.println("[MOXED] Extinction du plugin");
     }
 
-
-
-
-
     /*
      * FILES
      */
-    public void createFile(String fileName){
+    public void createFile(String fileName) {
 
-        if(!getDataFolder().exists()){
+        if (!getDataFolder().exists()) {
             getDataFolder().mkdir();
         }
 
         File file = new File(getDataFolder(), fileName + ".yml");
 
-        if(!file.exists()){
+        if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
@@ -96,16 +99,18 @@ public final class Main extends JavaPlugin {
             }
         }
     }
-    public File getFile(String fileName){
+
+    public File getFile(String fileName) {
         return new File(getDataFolder(), fileName + ".yml");
     }
-    public void createLogs(String fileName){
+
+    public void createLogs(String fileName) {
         File directory = new File(getDataFolder() + "/Logs");
-        if(!directory.exists()){
+        if (!directory.exists()) {
             directory.mkdirs();
         }
         File logs = new File(getDataFolder() + "/Logs/" + fileName + ".txt");
-        if(!logs.exists()){
+        if (!logs.exists()) {
             try {
                 logs.createNewFile();
             } catch (IOException e) {
@@ -113,21 +118,22 @@ public final class Main extends JavaPlugin {
             }
         }
     }
-    public File getLogs(String fileName){
+
+    public File getLogs(String fileName) {
         return new File(getDataFolder() + "/Logs", fileName + ".txt");
     }
-    public void writeOnLogs(String fileName, String configName, String pseudoName, String logsString){
-        if(getConfig().getString("Logs.status").equalsIgnoreCase("on") && getConfig().getString("Logs." + configName).equalsIgnoreCase("on")){
-            FileWriter fw = null;
-            try {
-                fw = new FileWriter(getDataFolder() + "/Logs/" + fileName + ".txt",true);
-                Calendar cal = Calendar.getInstance();
-                fw.write(cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR) + " - " + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.MILLISECOND) + " | " + pseudoName + " | " + logsString + "\n");
-                fw.close();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
 
+    public void writeOnLogs(String fileName, String configName, String pseudoName, String logsString) {
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(getDataFolder() + "/Logs/" + fileName + ".txt", true);
+            Calendar cal = Calendar.getInstance();
+            fw.write(cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR)
+                    + " - " + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":"
+                    + cal.get(Calendar.MILLISECOND) + " | " + pseudoName + " | " + logsString + "\n");
+            fw.close();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
     }
 

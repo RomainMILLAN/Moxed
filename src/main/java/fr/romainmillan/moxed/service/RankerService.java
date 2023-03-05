@@ -95,7 +95,7 @@ public class RankerService {
      * @param main
      */
     public static void setRankToPlayerCurrent(Player p, Ranks r, Main main){
-        main.rankPlayer.put(p, r);
+        Main.rankPlayer.put(p, r);
     }
 
     /**
