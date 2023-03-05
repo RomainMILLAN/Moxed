@@ -18,3 +18,4 @@ commands:
   freeze:
   system:
   cc:
+  warns:

@@ -12,7 +12,8 @@ public enum ModerationMessages {
     PEOPLE_MUTE(MoxedMessage.PREFIX_NORMAL.getMessage() + "Vous venez d'être §9Mute §fpar "),
     PEOPLE_UNMUTE(MoxedMessage.PREFIX_NORMAL.getMessage() + "Vous venez d'être §9UnMute §fpar "),
     CLEAR_SUCCESS(MoxedMessage.PREFIX_NORMAL.getMessage() + "Vous venez de §9Clear §fle chat"),
-    MUTE(MoxedMessage.PREFIX_ERROR.getMessage() + "Vous êtes §4Mute");
+    MUTE(MoxedMessage.PREFIX_ERROR.getMessage() + "Vous êtes §4Mute"),
+    NO_WARNS(MoxedMessage.PREFIX_NORMAL.getMessage() + "La personne sélectionné n'as aucun §9Warns");
 
 
     private String messages;

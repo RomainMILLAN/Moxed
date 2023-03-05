@@ -2,7 +2,6 @@ package fr.romainmillan.moxed.listeners;
 
 import fr.romainmillan.moxed.Main;
 import fr.romainmillan.moxed.messages.ModerationMessages;
-import fr.romainmillan.moxed.messages.MoxedMessage;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;

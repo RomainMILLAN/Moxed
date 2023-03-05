@@ -40,6 +40,7 @@ public final class Main extends JavaPlugin {
         //Config & Files
         saveDefaultConfig();
         createFile("ranker");
+        createFile("warns");
 
         //Commands
         getCommand("ranker").setExecutor(new commandRanker(this));
@@ -54,6 +55,7 @@ public final class Main extends JavaPlugin {
         getCommand("freeze").setExecutor(new commandFreeze(this));
         getCommand("system").setExecutor(new commandSystem(this));
         getCommand("cc").setExecutor(new commandChat(this));
+        getCommand("warns").setExecutor(new commandWarn(this));
 
         //Listeners
         getServer().getPluginManager().registerEvents(new RankerListener(this), this);
