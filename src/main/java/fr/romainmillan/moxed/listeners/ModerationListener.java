@@ -192,6 +192,10 @@ public class ModerationListener implements Listener {
                 p.closeInventory();
             }
 
+            if(current.getType() == Material.PAPER){
+                p.chat("/cc clear");
+            }
+
             if (current.getType() == Material.CONDUIT) {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "weather clear");
                 p.sendMessage(ModerationMessages.WEATHER_CLEAR.getMessages());

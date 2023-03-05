@@ -205,6 +205,7 @@ public class ModerationService {
         Inventory systemInventory = Bukkit.createInventory(null, 1 * 9, "Système");
 
         systemInventory.setItem(0, (ItemStack) ItemManager.craftItem(Material.BARRIER, "Fermer l'onglet"));
+        systemInventory.setItem(3, (ItemStack) ItemManager.craftItem(Material.PAPER, "Clear le chat"));
         systemInventory.setItem(4, (ItemStack) ItemManager.craftItem(Material.CONDUIT, "Enlever la pluie"));
         systemInventory.setItem(5, (ItemStack) ItemManager.craftItem(Material.RECOVERY_COMPASS, "Mettre la nuit"));
         systemInventory.setItem(6, (ItemStack) ItemManager.craftItem(Material.CLOCK, "Mettre le jour"));
@@ -213,7 +214,6 @@ public class ModerationService {
 
         systemInventory.setItem(1, (ItemStack) ItemManager.craftItemNone());
         systemInventory.setItem(2, (ItemStack) ItemManager.craftItemNone());
-        systemInventory.setItem(3, (ItemStack) ItemManager.craftItemNone());
 
         return systemInventory;
     }
