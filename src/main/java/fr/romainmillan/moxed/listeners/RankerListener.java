@@ -25,7 +25,7 @@ public class RankerListener implements Listener {
     public void onClick(InventoryClickEvent e){
         Player p = (Player) e.getWhoClicked();
         ItemStack current = e.getCurrentItem();
-        String SUCCESS = MoxedMessage.PREFIX_NORMAL + "Vous venez de mettre le rôle ";
+        String SUCCESS = MoxedMessage.PREFIX_NORMAL.getMessage() + "Vous venez de mettre le rôle ";
 
         if(e.getView().getTitle().contains("Ranker >")){
             if(p.isOp() || RankerService.isAdmin(p)){
