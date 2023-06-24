@@ -29,7 +29,7 @@ public class commandModeration implements CommandExecutor {
             Player p = (Player) sender;
             String commandAtUse = "/mm [player]";
 
-            if(RankerService.isStaff(p) && RankerService.isInStaff(p)){
+            if((RankerService.isStaff(p) && RankerService.isInStaff(p)) || RankerService.isAdmin(p)){
                 if(args.length == 1){
                     Player targetPlayer = (Player) Bukkit.getServer().getPlayer(args[0]);
                     if(targetPlayer == null){
